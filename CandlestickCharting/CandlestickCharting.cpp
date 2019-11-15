@@ -31,9 +31,8 @@ int main()
 	//  However, I have only checked for some of the input file reading errors at each point.
 
 
-	cout << "What file would you like you like to open?:" << endl;
-	cout << " BTChist.csv" << setw(20) << " BTChist1.csv" << endl;
-	cout << " BTChist2.csv" << setw(20) << " BTChist3.csv" << endl;
+	cout << "Please enter file would you like you like to open including the .csv extension?:" << endl;
+	
 	
 
 
@@ -44,10 +43,7 @@ int main()
 
 	ifstream inputFileStream;
 	inputFileStream.open(filename); // hardcoded filename, for now...
-
-	vector<string>Date;
-	vector<double> firstVector;
-	vector<double> secondVector;
+	
 
 	vector<double>High;
 	vector<double>Low;
@@ -60,12 +56,7 @@ int main()
 
 	if (inputFileStream.good())
 	{
-		cout << "Input file is good start processing..." << endl << endl;
-
-	//cout << right << setw(14) << "Date:" << setw(16) << "Open:" << setw(16) << "High:" << setw(16) << "Low:" << setw(16) << "Close:" << setw(16) << "Volume:" << setw(16) << "Market Cap:" << endl;
-		//cout.fill(char(196));
-		//cout << setw(112) << char(191) << endl;
-		//cout.fill(' ');
+		cout << "Input file is processing below:" << endl << endl;
 
 		string line;
 		getline(inputFileStream, line); // read 1st line, skip 1st line (headers), might fail!
@@ -140,10 +131,17 @@ int main()
 			max = max - highest;
 			cout << setw(10) << max << char(179) << endl;
 		} while (max > min);
-		for (int i = 0; i < days.size(); i++) {
-			cout << days[i];
+
+		for (int j = 0; j < days.size(); j++) {
+			
+			cout << "-";
 		}
-		
+		cout << endl;
+			
+		for (int i = 0; i < days.size(); i++) {
+			cout << setw(12) << days[i] ;
+		}
+		cout << endl;
 
 		if (inputFileStream.eof()) {
 			cout << "Reached the end of file marker.  File data read sucessfully." << endl;
