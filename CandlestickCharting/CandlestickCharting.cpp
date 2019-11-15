@@ -34,7 +34,7 @@ int main()
 	cout << "What file would you like you like to open?:" << endl;
 	cout << " BTChist.csv" << setw(20) << " BTChist1.csv" << endl;
 	cout << " BTChist2.csv" << setw(20) << " BTChist3.csv" << endl;
-
+	
 
 
 	string filename;
@@ -62,10 +62,10 @@ int main()
 	{
 		cout << "Input file is good start processing..." << endl << endl;
 
-		cout << right << setw(14) << "Date:" << setw(16) << "Open:" << setw(16) << "High:" << setw(16) << "Low:" << setw(16) << "Close:" << setw(16) << "Volume:" << setw(16) << "Market Cap:" << endl;
-		cout.fill(char(196));
-		cout << setw(112) << char(191) << endl;
-		cout.fill(' ');
+	//cout << right << setw(14) << "Date:" << setw(16) << "Open:" << setw(16) << "High:" << setw(16) << "Low:" << setw(16) << "Close:" << setw(16) << "Volume:" << setw(16) << "Market Cap:" << endl;
+		//cout.fill(char(196));
+		//cout << setw(112) << char(191) << endl;
+		//cout.fill(' ');
 
 		string line;
 		getline(inputFileStream, line); // read 1st line, skip 1st line (headers), might fail!
@@ -92,7 +92,7 @@ int main()
 
 
 
-			cout << setw(14) << trimmedDate << " " << char(179);
+			//cout << setw(14) << trimmedDate << " " << char(179);
 
 			cout << fixed;
 
@@ -102,7 +102,7 @@ int main()
 				getline(ss, field, ','); // read next field, might fail
 				stringstream fss(field);
 				fss >> fieldData; // try to convert to a double, this might fail !!!
-				cout << setw(14) << setprecision(0) << fieldData << " " << char(179);
+				
 				if (i == 0)
 					Open.push_back(fieldData);
 				if (i == 1)
@@ -118,7 +118,7 @@ int main()
 
 			}
 			cout << endl;
-
+			cout << setprecision(0) << endl;;
 			getline(inputFileStream, line); // read next line
 		}
 
@@ -135,7 +135,11 @@ int main()
 	     highest = maxValue / days.size();
 		cout << " Highest value" << highest << endl;
 
-
+		do
+		{
+			max = max - highest;
+			cout << setw(10) << max << char(179) << endl;
+		} while (max > min);
 
 		if (inputFileStream.eof()) {
 			cout << "Reached the end of file marker.  File data read sucessfully." << endl;
