@@ -140,6 +140,10 @@ int main()
 			max = max - highest;
 			cout << setw(10) << max << char(179) << endl;
 		} while (max > min);
+		for (int i = 0; i < days.size(); i++) {
+			cout << days[i];
+		}
+		
 
 		if (inputFileStream.eof()) {
 			cout << "Reached the end of file marker.  File data read sucessfully." << endl;
