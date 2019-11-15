@@ -1,22 +1,25 @@
 // CandlestickCharting.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //  This file is given as a starting point to help you with your coursework :).
 //  You will want to split this single file into multiple classes, objects and methods fairly early on.
-//  Author:  Chris Bass
-//     SID:  1234567890
+//  Author:  David Basil Akang
+//     SID:  8251628
 
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <string>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
 int main()
 {
-    cout << "Candlestick Charting Program Title!" << endl;
-	cout << "Author:  Chris Bass" << endl;
-	cout << "SID:  1234567890" << endl << endl;
+	cout << "Candlestick Charting Program Title!" << endl;
+	cout << "Author:  David Basil Akang" << endl;
+	cout << "SID:  8251628" << endl << endl;
 
 	// Read input data from .csv file.
 	//  Assumes the data is in a particular format:
@@ -32,17 +35,29 @@ int main()
 	//  I.e. read line, check, read line, check...  or read field, check, read field, check.
 	//  However, I have only checked for some of the input file reading errors at each point.
 
+	string fileName;
+	cout << "Please enter the name of the file you want to open and the extension: \n";
+	cin >> fileName;
+
 	ifstream inputFileStream;
-	inputFileStream.open("BTChist.csv"); // hardcoded filename, for now...
+	inputFileStream.open(fileName); // Have replaced the hardcoded name with a prompt//
+
+	vector<string>Date;
+	vector<double>Open;
+	vector<double>High;
+	vector<double>Low;
+	vector<double>Close;
+	vector<double>Volume;
+	vector<double>Market_Cap;
 
 	if (inputFileStream.good())
 	{
 		cout << "Input file is good start processing..." << endl << endl;
-		
-		cout << right << setw(14) << "Date:" << setw(16) << "Open:" << setw(16) << "High:" << setw(16) << "Low:" << setw(16) << "Close:" << setw(16) << "Volume:" << setw(16) << "Market Cap:" << endl;
-		cout.fill(char(196));
-		cout << setw(112) << char(191) << endl;
-		cout.fill(' ');
+
+		//cout << right << setw(14) << "Date:" << setw(16) << "Open:" << setw(16) << "High:" << setw(16) << "Low:" << setw(16) << "Close:" << setw(16) << "Volume:" << setw(16) << "Market Cap:" << endl;
+		//cout.fill(char(196));
+		//cout << setw(112) << char(191) << endl;
+		//cout.fill(' ');
 
 		string line;
 		getline(inputFileStream, line); // read 1st line, skip 1st line (headers), might fail!
@@ -54,38 +69,100 @@ int main()
 
 			string date1;
 			string date2;
+			string high;
+			int open1;
 			getline(ss, date1, ','); // read first field from line, might fail
 			getline(ss, date2, ','); // read second field from line, might fail
+
 			string date = date1 + date2;
 			string trimmedDate = date.substr(1, date.size() - 2);
+			Date.push_back(trimmedDate);
+			//cout << setw(14) << trimmedDate << " " << char(179);
 
-			cout << setw(14) << trimmedDate << " " << char(179);
+			for (int i = 0; i < Date.size(); i++)
+			{
+				//cout << Date[i] << "You are here " << endl;
+			}
 
-			cout << fixed;
+			//cout << fixed;//
 
-			for (int i = 0; i < 6; i++) { // loops through the remaining 6 columns
+			for (int i = 0; i < 1; i++) { // loops through the remaining 6 columns
 				string field;
 				double fieldData;
 				getline(ss, field, ','); // read next field, might fail
 				stringstream fss(field);
 				fss >> fieldData; // try to convert to a double, this might fail !!!
-				cout << setw(14) << setprecision(0) << fieldData << " " << char(179);
-			}
+				//cout << setw(14) << setprecision(0) << fieldData << " " << char(179);
+				Open.push_back(fieldData);
 
+
+
+				string field1;
+				double fieldData1;
+				getline(ss, field1, ','); // read next field, might fail
+				stringstream fss1(field1);
+				fss >> fieldData1; // try to convert to a double, this might fail !!!
+				// cout << setw(14) << setprecision(0) << fieldData1 << " " << char(179);
+				High.push_back(fieldData1);
+
+				string field2;
+				double fieldData2;
+				getline(ss, field2, ','); // read next field, might fail
+				stringstream fss2(field2);
+				fss >> fieldData2; // try to convert to a double, this might fail !!!
+				// cout << setw(14) << setprecision(0) << fieldData2 << " " << char(179);
+				Low.push_back(fieldData);
+
+				string field3;
+				double fieldData3;
+				getline(ss, field3, ','); // read next field, might fail
+				stringstream fss3(field3);
+				fss >> fieldData3; // try to convert to a double, this might fail !!!
+				// cout << setw(14) << setprecision(0) << fieldData3 << " " << char(179);
+				Close.push_back(fieldData3);
+
+
+				string field4;
+				double fieldData4;
+				getline(ss, field4, ','); // read next field, might fail
+				stringstream fss4(field4);
+				fss >> fieldData4; // try to convert to a double, this might fail !!!
+				// cout << setw(14) << setprecision(0) << fieldData4 << " " << char(179);
+				Close.push_back(fieldData4);
+
+				string field5;
+				double fieldData5;
+				getline(ss, field5, ','); // read next field, might fail
+				stringstream fss5(field5);
+				fss >> fieldData5; // try to convert to a double, this might fail !!!
+				//cout << setw(14) << setprecision(0) << fieldData5 << " " << char(179);
+				Volume.push_back(fieldData5);
+
+
+				////{
+
+				cout << endl;
+
+				getline(inputFileStream, line); // read next line
+			}
+			for (int i = 0; i < Open.size(); i++)
+			{
+				cout << Open[i] << endl;
+
+			}
 			cout << endl;
 
-			getline(inputFileStream, line); // read next line
-		}
 
-		cout << endl;
-
-		if (inputFileStream.eof()) {
-			cout << "Reached the end of file marker.  File data read sucessfully." << endl;
+			if (inputFileStream.eof()) {
+				cout << "Reached the end of file marker.  File data read sucessfully." << endl;
+			}
+			else {
+				cout << "Error in input file." << endl;
+			}
 		}
-		else {
-			cout << "Error in input file." << endl;
-		}
+		//double biggest_element = *max_element(Open.begin())
 	}
+
 	else
 	{
 		cout << "Error opening input file, ";
@@ -100,7 +177,7 @@ int main()
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
+// Tips for Getting Started:
 //   1. Use the Solution Explorer window to add/manage files
 //   2. Use the Team Explorer window to connect to source control
 //   3. Use the Output window to see build output and other messages
