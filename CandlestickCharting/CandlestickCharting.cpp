@@ -139,7 +139,7 @@ int main()
 		cout << endl;
 			
 		for (int i = 0; i < days.size(); i++) {
-			cout << setw(12) << days[i] ;
+			cout << setw(3) << days[i] ;
 		}
 		cout << endl;
 

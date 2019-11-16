@@ -18,5 +18,13 @@
     <ClCompile Include="CandlestickCharting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Candlestick.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Candlestick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

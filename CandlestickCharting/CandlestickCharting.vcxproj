@@ -151,7 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Candlestick.cpp" />
     <ClCompile Include="CandlestickCharting.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Candlestick.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
