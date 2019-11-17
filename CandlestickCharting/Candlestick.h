@@ -1,5 +1,15 @@
 #pragma once
-class Candlestick
+class CandlestickChart
 {
+private: 
+
 };
 
+class FinanceDirector
+{
+public:
+};
+class Candle
+{
+private:
+};

@@ -5,6 +5,7 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
+#include "Candlestick.h"
 
 using namespace std;
 
@@ -129,20 +130,34 @@ int main()
 		do
 		{
 			max = max - highest;
-			cout << setw(10) << max << char(179) << endl;
+			cout << setw(5) << max << char(179) << endl;
 		} while (max > min);
-
-		for (int j = 0; j < days.size(); j++) {
-			
-			cout << "-";
+		cout << " ";
+		for (int x_axis = 0; x_axis < 32; x_axis++)
+		{
+			cout.fill(char(196));
+			cout <<setw(3) << char(196);
 		}
 		cout << endl;
-			
-		for (int i = 0; i < days.size(); i++) {
-			cout << setw(3) << days[i] ;
+		cout << setw(1) << " ";
+		cout.fill(' ');
+		for (int line = 0; line < 30; line++)
+		{
+			cout << setw(3) << days[line];
 		}
 		cout << endl;
+		cout << endl;
+	/*	for (int i = 0; i > days.size(); i++) {
+			if (days[i])
+			{
+				if (High[i] == max)
+				{
+					cout << char(196);
+				}
+			}*/
 
+
+		}
 		if (inputFileStream.eof()) {
 			cout << "Reached the end of file marker.  File data read sucessfully." << endl;
 		}
