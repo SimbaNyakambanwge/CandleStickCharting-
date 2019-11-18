@@ -27,5 +27,25 @@ public:
 
 class Candle
 {
-private:
+public:
+	vector<double>High;
+	vector<double>Low;
+	vector<double>Open;
+	vector<double>Close;
+	vector<double>days;
+	string line;
+	
+	void datasave();
+	double max;
+	double min;
+	double maxValue;
+	double highest;
+	
+	void calculations();
+	void plot();
+};
+class Bargraph
+{
+public:
+	
 };

@@ -17,7 +17,10 @@ int main()
 	FinanceDirector Directorobject;
 	Directorobject.directorfiles();
 
-
+	Candle Savedataobject;
+	Savedataobject.datasave();
+	Savedataobject.calculations();
+	Savedataobject.plot();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
