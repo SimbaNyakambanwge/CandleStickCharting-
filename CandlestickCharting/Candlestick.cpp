@@ -12,7 +12,7 @@ FinanceDirector::FinanceDirector() {
 
 	cout << "Candlestick" << endl;
 	cout << "Author:  Simbarashe Nyakambangwe" << endl;
-	cout << "SID:  8520524" << endl << endl;
+	cout << "SID:  8316064" << endl << endl;
 	cout << "please enter a name of a file including csv" << endl;
 }
 
@@ -66,7 +66,7 @@ else {
 
 void Candle::datasave()
 {
-	string line;
+	
 
 
 	stringstream ss(line);
@@ -104,8 +104,9 @@ void Candle::datasave()
 			High.push_back(fieldData);
 		if (i == 2)
 			Low.push_back(fieldData);
-		if (i == 3)
+		if (i == 3) {
 			Close.push_back(fieldData);
+		}
 	}
 
 }
