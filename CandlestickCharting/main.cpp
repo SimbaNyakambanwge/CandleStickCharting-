@@ -17,6 +17,7 @@ int  main()
 
 		FinanceDirector Directorobject;
 		Directorobject.directorfiles();
+		Directorobject.calculations();
 		
 		
 }

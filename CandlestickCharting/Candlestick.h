@@ -1,7 +1,7 @@
 #pragma once
-#ifndef FinanceDirector_H
-#define FinanceDirector_H
-#endif // !FinanceDirector_H
+#ifndef Candlestick_H
+#define Candlestick_H
+#endif // !candlestick_H
 #include <string>
 #include <vector>
 #include "DataManager.h"

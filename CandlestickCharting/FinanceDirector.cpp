@@ -1,4 +1,4 @@
-#include "FinanceDirector.h"
+#include "Candlestick.h"
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -106,7 +106,7 @@ void FinanceDirector::directorfiles() {
 		maxValue = max - min;
 		cout << "minimum minus maximum value" << maxValue << endl;
 		increment = maxValue / user;
-		cout << " Highest value" << increment << endl;
+		cout << " Incrementing by" << increment << endl;
 
 
 		for (int i = 1; i < High.size(); i++) {
@@ -115,10 +115,10 @@ void FinanceDirector::directorfiles() {
 				if (max < 10000000) {
 					cout << setw(5) << max << " " << char(180) << endl;
 				}
-				else {
+			else {
 					cout << max << endl;
 				}
-			// plotting x axis
+		//	// plotting x axis
 
 			}
 			
@@ -126,7 +126,7 @@ void FinanceDirector::directorfiles() {
 
 
 
-		
+		//
 
 		for (int x_axis = 0; x_axis < 50; x_axis++)
 		{
@@ -135,7 +135,7 @@ void FinanceDirector::directorfiles() {
 		}
 		cout << endl;
 		cout << setw(0) << "      ";
-		cout.fill(' ');
+	    cout.fill(' ');
 		for (int line = 1; line < 30; line++)
 		{
 			cout << setw(3) << " " << days[line];
@@ -164,4 +164,7 @@ void FinanceDirector::directorfiles() {
 	inputFileStream.close();
 
 
+}
+void FinanceDirector::calculations() {
+	
 }

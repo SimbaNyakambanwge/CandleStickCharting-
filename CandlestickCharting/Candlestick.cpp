@@ -153,15 +153,15 @@ void FinanceDirector::directorfiles() {
 		cout << "How many divisions?" << endl;
 		cin >> user;
 		double maximum = *max_element(High.begin(), High.end());
-		//cout << max << " = Max" << endl;
+		cout << max << " = Max" << endl;
 		double minimum = *min_element(Low.begin(), Low.end());
-		//cout << min << " = Min" << endl;
-		//cout << days.size() << "Days" << endl;
+		cout << min << " = Min" << endl;
+		cout << days.size() << "Days" << endl;
 		double maxValue;
 		double increment;
 		maxValue = maximum - minimum;
-		//cout << "minimum minus maximum value" << " " << maxValue << endl;
+		cout << "minimum minus maximum value" << " " << maxValue << endl;
 		increment = maxValue / High.size();
-		//cout << " Incrementing by" << " " << increment << endl;
+		cout << " Incrementing by" << " " << increment << endl;
 	}
 }
