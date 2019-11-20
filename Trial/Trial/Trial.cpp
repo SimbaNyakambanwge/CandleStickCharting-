@@ -5,23 +5,22 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
-#include "Financedirector.h"
-//#include "DataManager.h"
+#include "Trial.h"
 
 using namespace std;
 
 
 
-int  main()
+int main()
+{
 
-	{
+	FinanceDirector Directorobject;
+	Directorobject.directorfiles();
 
-		FinanceDirector Directorobject;
-		Directorobject.directorfiles();
-		Directorobject.calculations();
-		//DataManager Object;
-		//Object.calculations();
-		
+	Candle Savedataobject;
+	Savedataobject.datasave();
+	Savedataobject.calculations();
+	Savedataobject.plot();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

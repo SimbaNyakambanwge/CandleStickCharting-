@@ -6,11 +6,11 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
-//#include "DataManager.h"
+#include "DataManager.h"
 using namespace std;
 
 FinanceDirector::FinanceDirector() {
-
+	
 	cout << "Candlestick" << endl;
 	cout << "Author:  Simbarashe Nyakambangwe" << endl;
 	cout << "SID:  8520524" << endl << endl;
@@ -30,7 +30,7 @@ void FinanceDirector::directorfiles() {
 	inputFileStream.open(filename); // hardcoded filename, for now...
 
 
-
+	
 
 
 	if (inputFileStream.good())
@@ -59,6 +59,10 @@ void FinanceDirector::directorfiles() {
 			iss >> day;
 			days.push_back(day);
 
+
+
+
+			//cout << setw(14) << trimmedDate << " " << char(179);
 
 			cout << fixed;
 
@@ -89,54 +93,68 @@ void FinanceDirector::directorfiles() {
 		}
 
 		cout << endl;
-	
-
+		int user;
+		cout << "How many divisions?" << endl;
+		cin >> user;
+		double max = *max_element(High.begin(), High.end());
+		cout << max << " = Max" << endl;
+		double min = *min_element(Low.begin(), Low.end());
+		cout << min << " = Min" << endl;
+		cout << days.size() << "Days" << endl;
+		double maxValue;
+		double increment;
+		maxValue = max - min;
+		cout << "minimum minus maximum value" << maxValue << endl;
+		increment = maxValue / user;
+		cout << " Highest value" << increment << endl;
 
 
 		for (int i = 1; i < High.size(); i++) {
-			while (maximum > minimum) {
-				maximum = maximum - increment;
-				cout << setw(5) << maximum << " " << char(180) << endl;
-
-				cout << maximum << endl;
-			}
+			while (max > min) {
+				max = max - increment;
+				if (max < 10000000) {
+					cout << setw(5) << max << " " << char(180) << endl;
+				}
+				else {
+					cout << max << endl;
+				}
 			// plotting x axis
 
+			}
+			
 		}
 
+
+
+		
+
+		for (int x_axis = 0; x_axis < 50; x_axis++)
+		{
+			cout.fill(char(196));
+			cout << setw(3) << char(196);
+		}
+		cout << endl;
+		cout << setw(0) << "      ";
+		cout.fill(' ');
+		for (int line = 1; line < 30; line++)
+		{
+			cout << setw(3) << " " << days[line];
+		}
+		cout << endl;
+		cout << endl;
+
+		if (inputFileStream.eof()) {
+			cout << "Reached the end of file marker.  File data read sucessfully." << endl;
+		}
+		else {
+			cout << "Error in input file." << endl;
+		}
 	}
-
-
-
-
-
-	for (int x_axis = 0; x_axis < 50; x_axis++)
-	{
-		cout.fill(char(196));
-		cout << setw(3) << char(196);
-	}
-	cout << endl;
-	cout << setw(0) << "      ";
-	cout.fill(' ');
-	for (int line = 1; line < 30; line++)
-	{
-		cout << setw(3) << " " << days[line];
-	}
-	cout << endl;
-	cout << endl;
-
-	if (inputFileStream.eof()) {
-		cout << "Reached the end of file marker.  File data read sucessfully." << endl;
-	}
-	else {
-		cout << "Error in input file." << endl;
-	}
-}
 	else
 	{
-	cout << "Error opening input file, ";
-	cout << "check 'BTChist.csv' exists in correct directory." << endl;
-	cout << "Please input another valid filename" << endl;
+		cout << "Error opening input file, ";
+		cout << "check 'BTChist.csv' exists in correct directory." << endl;
+		cout << "Please input another valid filename" << endl;
 
 
 	}
@@ -146,22 +164,4 @@ void FinanceDirector::directorfiles() {
 	inputFileStream.close();
 
 
-
-
-	void FinanceDirector::calculations() {
-		int user;
-		cout << "How many divisions?" << endl;
-		cin >> user;
-		double maximum = *max_element(High.begin(), High.end());
-		//cout << max << " = Max" << endl;
-		double minimum = *min_element(Low.begin(), Low.end());
-		//cout << min << " = Min" << endl;
-		//cout << days.size() << "Days" << endl;
-		double maxValue;
-		double increment;
-		maxValue = maximum - minimum;
-		//cout << "minimum minus maximum value" << " " << maxValue << endl;
-		increment = maxValue / High.size();
-		//cout << " Incrementing by" << " " << increment << endl;
-	}
 }

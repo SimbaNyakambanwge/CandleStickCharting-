@@ -1,10 +1,9 @@
 #pragma once
-#ifndef FinanceDirector_H
-#define FinanceDirector_H
-#endif // !FinanceDirector_H
+#ifndef candlestick_H
+#define candlestick_H
+#endif // !candlestick_H
 #include <string>
 #include <vector>
-#include "DataManager.h"
 using namespace std;
 
 
@@ -19,12 +18,10 @@ private:
 	vector<double>Volume;
 	vector<double>Market_Cap;
 	vector<double> days;
-	
-	
 public:
 	FinanceDirector();
 	void directorfiles();
-	void calculations();
+
 	
 };
 

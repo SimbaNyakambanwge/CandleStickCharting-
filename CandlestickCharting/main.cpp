@@ -5,8 +5,7 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
-#include "Financedirector.h"
-//#include "DataManager.h"
+#include "Candlestick.h"
 
 using namespace std;
 
@@ -18,9 +17,7 @@ int  main()
 
 		FinanceDirector Directorobject;
 		Directorobject.directorfiles();
-		Directorobject.calculations();
-		//DataManager Object;
-		//Object.calculations();
+		
 		
 }
 
