@@ -25,7 +25,8 @@ private:
 public:
 	FinanceDirector();
 	void directorfiles();
-	void calculations();
+	void calculationsXaxis();
+	
 	
 };
 
