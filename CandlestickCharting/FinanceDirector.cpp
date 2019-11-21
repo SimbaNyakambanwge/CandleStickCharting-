@@ -93,40 +93,53 @@ void FinanceDirector::directorfiles() {
 		}
 
 		cout << endl;
-		int user;
-		cout << "How many divisions?" << endl;
-		cin >> user;
-		double max = *max_element(High.begin(), High.end());
-		cout << max << " = Max" << endl;
-		double min = *min_element(Low.begin(), Low.end());
-		cout << min << " = Min" << endl;
-		cout << days.size() << "Days" << endl;
-		double maxValue;
+		//int user;
+		//cout << "How many divisions?" << endl;
+		//cin >> user;
+		double maximum = *max_element(High.begin(), High.end());
+		cout << maximum << " = Max" << endl;
+		double minimum = *min_element(Low.begin(), Low.end());
+		cout << minimum << " = Min" << endl;
+		cout << days.size() <<" " << "Days" << endl;
+		double Difference;
 		double increment;
-		maxValue = max - min;
-		cout << "minimum minus maximum value" << maxValue << endl;
-		increment = maxValue / user;
-		cout << " Incrementing by" << increment << endl;
+		Difference = maximum - minimum;
+		cout << "minimum minus maximum value" <<" "<< Difference << endl;
+		increment = Difference / High.size();
+		cout << " Incrementing by" <<" "<< increment << endl;
 
+		//Y Axis
+		int spaces = 3;
+				for (int j = 1; j < increment; j++) {
+					maximum = maximum - increment;
+					
+					//cout << setw(5) << maximum << char(180) << endl;
+					if (Close[j] > maximum )
+					{
+						cout << setw(8)<< maximum << char(180)<< setw(spaces)<< char(219) << endl;
 
-		for (int i = 1; i < High.size(); i++) {
-			while (max > min) {
-				max = max - increment;
-				if (max < 10000000) {
-					cout << setw(5) << max << " " << char(180) << endl;
+					}
+					else
+					{
+						cout << setw(8) << maximum << char(180) << setw(spaces)<< " " << endl;
+					}
+					if
+						(Close[j] < Open[j])
+					{
+						cout << setw(8) << maximum << char(180) <<setw(spaces)<< char(176) << endl;
+					
+					
+						cout << setw(8) << maximum << char(180) << setw(spaces)<<char(192) << endl;
+					}
+					
+					if (High[j] >= maximum)
+					{
+						cout << setw(8) << maximum << char(180) <<setw(spaces)<< char(194) << endl;
+					}
+					spaces++;
+					
 				}
-			else {
-					cout << max << endl;
-				}
-		//	// plotting x axis
 
-			}
-			
-		}
-
-
-
-		//
 
 		for (int x_axis = 0; x_axis < 50; x_axis++)
 		{

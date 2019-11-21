@@ -19,6 +19,7 @@ private:
 	vector<double>Volume;
 	vector<double>Market_Cap;
 	vector<double> days;
+
 	
 	
 public:
