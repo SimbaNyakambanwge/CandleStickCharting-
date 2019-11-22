@@ -112,7 +112,7 @@ void FinanceDirector::directorfiles() {
 		
 		for (int rows = 0; rows < 90 ; rows++) { // looping through rows
 			maximum = maximum - increment;
-			cout << setw(5) << maximum << "   "<<char(180);
+			cout << setw(5) << maximum << " "<<char(180);
 
 			for (int j = 0; j < days.size(); j++) { // loop through col
 				
@@ -139,9 +139,10 @@ void FinanceDirector::directorfiles() {
 
 			}
 			cout << endl;
-		}
+	    }
+		
 	}
-	for(int i =0;i > Volume.size();i++)
+	
 	else
 	{
 		cout << "Error opening input file, ";
@@ -166,7 +167,7 @@ void FinanceDirector::calculationsXaxis() {
 		
 	}
 	cout << endl;
-	cout << setw(9);
+	cout << setw(7);
 	cout << "   ";
 	for (int x = 0; x < days.size(); x+=3)
 	{
@@ -174,5 +175,26 @@ void FinanceDirector::calculationsXaxis() {
 		cout << setw(2) <<days[x] << " ";
 		
 	}
+	cout << endl;
+	cout << endl;
 	
+}
+void FinanceDirector::bargraph() {
+	double barY;
+	for (int rows = 0; rows < 10; rows++) { // looping through rows
+		barY = Volume[rows] / 1000000;
+		cout << setw(5) << barY << "  " << char(180);
+
+		for (int j = 0; j < Volume.size(); j++) { //looping through columns *char177
+			if (Volume[j] >= barY) {
+				cout << char(219);
+			}
+			else if (Volume[j] <= barY) {
+				cout << char(177);
+			}
+		}
+		cout << endl;
+	}
+	calculationsXaxis();
+
 }

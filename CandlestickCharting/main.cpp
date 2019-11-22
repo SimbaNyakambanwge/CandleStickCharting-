@@ -18,6 +18,7 @@ int  main()
 		FinanceDirector Directorobject;
 		Directorobject.directorfiles();
 		Directorobject.calculationsXaxis();
+		Directorobject.bargraph();
 		
 		
 		

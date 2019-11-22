@@ -26,6 +26,7 @@ public:
 	FinanceDirector();
 	void directorfiles();
 	void calculationsXaxis();
+	void bargraph();
 	
 	
 };
