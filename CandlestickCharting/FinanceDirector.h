@@ -1,27 +1,10 @@
 #pragma once
-#ifndef candlestick_H
-#define candlestick_H
-#endif // !candlestick_H
+#ifndef FinanceDirector_H
+#define FincanceDirector_H
+#endif // !financedirector_H
 #include <string>
 #include <vector>
-using namespace std;
+#include <algorithm>
 
 
-class FinanceDirector
-{
-private:
-	string director;
-	vector<double>High;
-	vector<double>Low;
-	vector<double>Open;
-	vector<double>Close;
-	vector<double>Volume;
-	vector<double>Market_Cap;
-	vector<double> days;
-public:
-	FinanceDirector();
-	void directorfiles();
-
-	
-};
 

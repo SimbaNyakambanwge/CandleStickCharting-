@@ -15,21 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DataManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FinanceDirector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DataManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DataManager.h">
+    <ClInclude Include="FinanceDirector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FinanceDirector.h">
+    <ClInclude Include="DataManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

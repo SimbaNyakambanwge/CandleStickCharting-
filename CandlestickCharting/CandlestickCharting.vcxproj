@@ -151,13 +151,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="FinanceDirector.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="DataManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FinanceDirector.h" />
     <ClInclude Include="DataManager.h" />
+    <ClInclude Include="FinanceDirector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
