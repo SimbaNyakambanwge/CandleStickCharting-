@@ -98,7 +98,7 @@ void FinanceDirector::directorfiles() {
 		cout << maximum << " = Max" << endl;
 		double minimum = *min_element(Low.begin(), Low.end());
 		cout << minimum << " = Min" << endl;
-		cout << days.size() <<" " << "Days" << endl;
+		cout << days.size() << " " << "Days" << endl;
 		double Difference;
 		double increment;
 		Difference = maximum - minimum;
