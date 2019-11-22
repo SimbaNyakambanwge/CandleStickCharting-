@@ -16,7 +16,7 @@ private:
 	vector<double>Low;
 	vector<double>Open;
 	vector<double>Close;
-	vector<double>Volume;
+	vector<long long>Volume;
 	vector<double>Market_Cap;
 	vector<double> days;
 

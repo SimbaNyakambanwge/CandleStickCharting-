@@ -103,19 +103,18 @@ void FinanceDirector::directorfiles() {
 		double increment;
 		Difference = maximum - minimum;
 		cout << "minimum minus maximum value" <<" "<< Difference << endl;
-		increment = Difference /30;
+		increment = Difference /90;
 		const double HALF_INC = increment / 2;
 		cout << " Incrementing by" <<" "<< increment << endl;
 
-
+	
 		
 		
-		for (int rows = 0; rows < 30 ; rows++) { // looping through rows
+		for (int rows = 0; rows < 90 ; rows++) { // looping through rows
 			maximum = maximum - increment;
 			cout << setw(5) << maximum << "   "<<char(180);
 
 			for (int j = 0; j < days.size(); j++) { // loop through col
-				
 				
 				if (Close[j] >= maximum - HALF_INC && maximum + HALF_INC >= Open[j])
 				{
@@ -142,6 +141,7 @@ void FinanceDirector::directorfiles() {
 			cout << endl;
 		}
 	}
+	for(int i =0;i > Volume.size();i++)
 	else
 	{
 		cout << "Error opening input file, ";
@@ -165,14 +165,14 @@ void FinanceDirector::calculationsXaxis() {
 		cout<< char(196);
 		
 	}
-	
-	/*for (int line = 1; line < 30; line++)
+	cout << endl;
+	cout << setw(9);
+	cout << "   ";
+	for (int x = 0; x < days.size(); x+=3)
 	{
-		cout << setw(3) << " " << days[line];
+		cout.fill('0');
+		cout << setw(2) <<days[x] << " ";
 		
 	}
-	cout << endl;
-	cout << endl;*/
-
-
+	
 }
