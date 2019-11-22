@@ -103,50 +103,40 @@ void FinanceDirector::directorfiles() {
 		double increment;
 		Difference = maximum - minimum;
 		cout << "minimum minus maximum value" <<" "<< Difference << endl;
-		increment = Difference /20;
+		increment = Difference /30;
+		const double HALF_INC = increment / 2;
 		cout << " Incrementing by" <<" "<< increment << endl;
 
+
 		
 		
-		for (int rows = 0; rows < 20 ; rows++) { // looping through rows
+		for (int rows = 0; rows < 30 ; rows++) { // looping through rows
 			maximum = maximum - increment;
 			cout << setw(5) << maximum << "   "<<char(180);
-			for (int j = 0; j < days.size(); j++) {
+
+			for (int j = 0; j < days.size(); j++) { // loop through col
 				
 				
-				if (Close[j] > maximum && maximum > Open[j])
+				if (Close[j] >= maximum - HALF_INC && maximum + HALF_INC >= Open[j])
 				{
 					cout << char(219);
-					/*if (maximum <= High[j])
-					{
-						cout << char(192);
-					}*/
-				}
-				else
-				{
-					cout << "    ";
-				}
-				if (Open[j] > maximum && maximum > Close[j])
-				{
-					cout << char(176);
-				}
-				else
-				{
 					
 				}
-				
-				
-				
-
-				/*if (Close[j] < Open[j])
+				else if (Open[j] >= maximum - HALF_INC && maximum + HALF_INC >= Close[j])
 				{
 					cout << char(176);
-
-				}*/
-
-				
-
-				
+				}
+				else if (maximum - HALF_INC <= High[j] && maximum + HALF_INC >= Low[j]) {
+					cout << char(179);
+				}
+				else if (maximum + HALF_INC >= High[j] && maximum - HALF_INC <= Low[j]) {
+					cout << char(179);
+				}
+				else
+				{
+					cout << " ";
+				}
+	            	
 
 			}
 			cout << endl;
@@ -169,21 +159,20 @@ void FinanceDirector::directorfiles() {
 }
 void FinanceDirector::calculationsXaxis() {
 
-	for (int x_axis = 0; x_axis < 50; x_axis++)
+	for (int line = 0; line < 65; line++)
 	{
 		cout.fill(char(196));
-		cout << setw(3) << char(196);
+		cout<< char(196);
+		
 	}
-	cout << endl;
-	cout << setw(7) << "  ";
-	cout.fill(' ');
-	for (int line = 1; line < 30; line++)
+	
+	/*for (int line = 1; line < 30; line++)
 	{
 		cout << setw(3) << " " << days[line];
 		
 	}
 	cout << endl;
-	cout << endl;
+	cout << endl;*/
 
 
 }
