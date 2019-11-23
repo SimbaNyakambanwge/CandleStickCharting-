@@ -19,13 +19,12 @@ private:
 	vector<long long>Volume;
 	vector<double>Market_Cap;
 	vector<double> days;
-	int divider = 1000000;
+	int divider = 1000000000;
 
 
 
 public:
 	
-	DataManager();
 	void datasave();
 	void calculationsXaxis();
 	void bargraph();

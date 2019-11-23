@@ -15,10 +15,12 @@ using namespace std;
 int  main()
 
 {
-        DataManager Managerobject;
-		Managerobject.datasave();
-		Managerobject.calculationsXaxis();
-		Managerobject.bargraph();
+	FinanceDirector Financeobject;
+       
+	DataManager Managerobject;
+	Managerobject.datasave();
+	Managerobject.calculationsXaxis();
+	Managerobject.bargraph();
 		
 		
 		

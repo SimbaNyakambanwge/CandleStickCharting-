@@ -10,16 +10,6 @@
 using namespace std;
 
 
-DataManager::DataManager() {
-
-	cout << "Candlestick" << endl;
-	cout << "Author:  Simbarashe Nyakambangwe" << endl;
-	cout << "SID:  8520524" << endl << endl;
-
-	cout << "please enter a name of a file including csv" << endl;
-}
-
-
 
 void DataManager::datasave() {
 
@@ -88,6 +78,7 @@ void DataManager::datasave() {
 					Volume.push_back(fieldData);
 				if (i == 5)
 					Market_Cap.push_back(fieldData);
+				
 
 			}
 			cout << endl;
@@ -96,24 +87,29 @@ void DataManager::datasave() {
 		}
 
 		cout << endl;
-
+		reverse(Open.begin(), Open.end());
+		reverse(High.begin(), High.end());
+		reverse(Low.begin(), Low.end());
+		reverse(Close.begin(), Close.end());
+		reverse(Volume.begin(), Volume.end());
+		reverse(Market_Cap.begin(), Market_Cap.end());
+		reverse(days.begin(), days.end());
 		double maximum = *max_element(High.begin(), High.end());
-		cout << maximum << " = Max" << endl;
+		
 		double minimum = *min_element(Low.begin(), Low.end());
-		cout << minimum << " = Min" << endl;
-		cout << days.size() << " " << "Days" << endl;
+		
 		double Difference;
+
 		double increment;
+
 		Difference = maximum - minimum;
-		cout << "minimum minus maximum value" << " " << Difference << endl;
-		increment = Difference / 90;
+		
+		increment = Difference / 30;
+
 		const double HALF_INC = increment / 2;
-		cout << " Incrementing by" << " " << increment << endl;
 
-
-
-
-		for (int rows = 0; rows < 90; rows++) { // looping through rows
+		
+		for (int rows = 0; rows < 30; rows++) { // looping through rows
 			maximum = maximum - increment;
 			cout << setw(5) << maximum << " " << char(180);
 
@@ -163,12 +159,12 @@ void DataManager::datasave() {
 }
 void DataManager::calculationsXaxis() {
 
-	for (int line = 0; line < 65; line++)
+	/*for (int line = 0; line < 65; line++)
 	{
 		cout.fill(char(196));
 		cout << char(196);
 
-	}
+	}*/
 	cout << endl;
 	cout << setw(7);
 	cout << "   ";
@@ -184,19 +180,27 @@ void DataManager::calculationsXaxis() {
 }
 void DataManager::bargraph() {
 	double barY;
-	for (int rows = 0; rows < 10; rows++) { // looping through rows
-		barY = Volume[rows] / divider;
-		cout << setw(5) << barY << "  " << char(180);
+	double comp;
+	
+		for (int rows = 0; rows < 30; rows++) {// looping through rows
+			barY = Volume[rows] / divider;
+			comp = Volume[rows];
+			cout << barY << " " << "Bil " << char(180);
 
-		for (int j = 0; j < Volume.size(); j++) { //looping through columns *char177
-			if (Volume[j] >= barY && Volume[j] ) {
-				cout << char(176);
+			for (int j = 0; j < days.size(); j++) { //looping through columns *char177
+				if (Volume[j] <= comp && Open[j] < Close[j]) {
+					cout << char(219);
+				}
+				else if (Volume[j] <= comp && Open[j] > Close[j]) {
+					cout << char(176);
+				}
+				/*else if (Volume[j] comp )
+				{
+					cout << ".";
+				}*/
 			}
-			else if (Volume[j] >= barY) {
-				cout << char(176);
-			}
+			cout << endl;
 		}
-		cout << endl;
-	}
+	
 	calculationsXaxis();
 }
