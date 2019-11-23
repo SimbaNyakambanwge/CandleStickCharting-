@@ -28,5 +28,6 @@ public:
 	void datasave();
 	void calculationsXaxis();
 	void bargraph();
+	void reversedata();
 
 };

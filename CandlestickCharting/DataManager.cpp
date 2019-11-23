@@ -87,13 +87,7 @@ void DataManager::datasave() {
 		}
 
 		cout << endl;
-		reverse(Open.begin(), Open.end());
-		reverse(High.begin(), High.end());
-		reverse(Low.begin(), Low.end());
-		reverse(Close.begin(), Close.end());
-		reverse(Volume.begin(), Volume.end());
-		reverse(Market_Cap.begin(), Market_Cap.end());
-		reverse(days.begin(), days.end());
+		reversedata();
 		double maximum = *max_element(High.begin(), High.end());
 		
 		double minimum = *min_element(Low.begin(), Low.end());
@@ -180,18 +174,18 @@ void DataManager::calculationsXaxis() {
 }
 void DataManager::bargraph() {
 	double barY;
-	double comp;
+	double compare;
 	
 		for (int rows = 0; rows < 30; rows++) {// looping through rows
 			barY = Volume[rows] / divider;
-			comp = Volume[rows];
+			compare = Volume[rows];
 			cout << barY << " " << "Bil " << char(180);
 
 			for (int j = 0; j < days.size(); j++) { //looping through columns *char177
-				if (Volume[j] <= comp && Open[j] < Close[j]) {
+				if (Volume[j] <= compare && Open[j] < Close[j]) {
 					cout << char(219);
 				}
-				else if (Volume[j] <= comp && Open[j] > Close[j]) {
+				else if (Volume[j] <= compare && Open[j] > Close[j]) {
 					cout << char(176);
 				}
 				/*else if (Volume[j] comp )
@@ -203,4 +197,13 @@ void DataManager::bargraph() {
 		}
 	
 	calculationsXaxis();
+}
+void DataManager::reversedata() {
+	reverse(Open.begin(), Open.end());
+	reverse(High.begin(), High.end());
+	reverse(Low.begin(), Low.end());
+	reverse(Close.begin(), Close.end());
+	reverse(Volume.begin(), Volume.end());
+	reverse(Market_Cap.begin(), Market_Cap.end());
+	reverse(days.begin(), days.end());
 }
