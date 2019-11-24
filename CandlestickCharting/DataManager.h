@@ -19,7 +19,7 @@ private:
 	vector<long long>Volume;
 	vector<double>Market_Cap;
 	vector<double> days;
-	int divider = 1000000000;
+	int divider = 100000000;
 
 
 
@@ -29,5 +29,6 @@ public:
 	void calculationsXaxis();
 	void bargraph();
 	void reversedata();
+	
 
 };

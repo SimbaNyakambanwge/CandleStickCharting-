@@ -88,6 +88,7 @@ void DataManager::datasave() {
 
 		cout << endl;
 		reversedata();
+		
 		double maximum = *max_element(High.begin(), High.end());
 		
 		double minimum = *min_element(Low.begin(), Low.end());
@@ -101,7 +102,7 @@ void DataManager::datasave() {
 		increment = Difference / 30;
 
 		const double HALF_INC = increment / 2;
-
+		
 		
 		for (int rows = 0; rows < 30; rows++) { // looping through rows
 			maximum = maximum - increment;
@@ -173,31 +174,47 @@ void DataManager::calculationsXaxis() {
 
 }
 void DataManager::bargraph() {
-	double barY;
-	double compare;
+	reversedata();
+	long long increment;
+	long long difference;
+	long long Yaxis;
+	long long highest = *max_element(Volume.begin(), Volume.end());
+	long long lowest = *min_element(Volume.begin(), Volume.end());
+	difference = highest - lowest;
+	increment = (difference / 30) ;
 	
-		for (int rows = 0; rows < 30; rows++) {// looping through rows
-			barY = Volume[rows] / divider;
-			compare = Volume[rows];
-			cout << barY << " " << "Bil " << char(180);
-
-			for (int j = 0; j < days.size(); j++) { //looping through columns *char177
-				if (Volume[j] <= compare && Open[j] < Close[j]) {
-					cout << char(219);
-				}
-				else if (Volume[j] <= compare && Open[j] > Close[j]) {
-					cout << char(176);
-				}
-				/*else if (Volume[j] comp )
-				{
-					cout << ".";
-				}*/
+	
+	for (int i = 0; i < 30; i++) {
+		highest = (highest - increment);
+		
+		Yaxis = highest / divider;
+		
+		cout << setw(3) << Yaxis << "Bil " << char(180);
+		
+		for (int j = 0; j < days.size(); j++) {
+			if (Volume[j] >= highest && Open[j] < Close[j]) {
+				cout << char(219);
 			}
-			cout << endl;
+			else if (Volume[j] >= highest && Open[j] > Close[j]) {
+				cout << char(176);
+			}
+			else
+				cout << " ";
+				
 		}
-	
+		cout << endl;
+	}
 	calculationsXaxis();
 }
+
+
+
+
+
+
+
+
+
 void DataManager::reversedata() {
 	reverse(Open.begin(), Open.end());
 	reverse(High.begin(), High.end());
