@@ -9,8 +9,12 @@ using namespace std;
 
 class FinanceDirector
 {
+private:
+	string director;
+	int user;
 public:
 	FinanceDirector();
+	void finance();
 };
 
 

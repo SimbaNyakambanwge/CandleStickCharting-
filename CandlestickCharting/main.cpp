@@ -21,6 +21,7 @@ int  main()
 	Managerobject.datasave();
 	Managerobject.calculationsXaxis();
 	Managerobject.bargraph();
+	Managerobject.sma();
 	
 		
 		

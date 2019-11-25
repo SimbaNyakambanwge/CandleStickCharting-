@@ -9,8 +9,6 @@
 #include "DataManager.h"
 using namespace std;
 
-
-
 void DataManager::datasave() {
 
 	string filename;
@@ -22,12 +20,13 @@ void DataManager::datasave() {
 	ifstream inputFileStream;
 	inputFileStream.open(filename); // hardcoded filename, for now...
 
+	
 
-
-
+	
 
 	if (inputFileStream.good())
 	{
+		
 		cout << "Input file is processing below:" << endl << endl;
 
 		string line;
@@ -134,8 +133,12 @@ void DataManager::datasave() {
 			}
 			cout << endl;
 		}
+		
+		
+		
 
 	}
+
 
 	else
 	{
@@ -153,7 +156,7 @@ void DataManager::datasave() {
 
 }
 void DataManager::calculationsXaxis() {
-
+	 reversedata();
 	/*for (int line = 0; line < 65; line++)
 	{
 		cout.fill(char(196));
@@ -206,15 +209,6 @@ void DataManager::bargraph() {
 	}
 	calculationsXaxis();
 }
-
-
-
-
-
-
-
-
-
 void DataManager::reversedata() {
 	reverse(Open.begin(), Open.end());
 	reverse(High.begin(), High.end());
@@ -223,4 +217,38 @@ void DataManager::reversedata() {
 	reverse(Volume.begin(), Volume.end());
 	reverse(Market_Cap.begin(), Market_Cap.end());
 	reverse(days.begin(), days.end());
+}
+void DataManager::sma() {
+	reversedata();
+
+	double maximum = *max_element(High.begin(), High.end());
+    double minimum = *min_element(Low.begin(), Low.end());
+	double Difference;
+    double increment;
+    Difference = maximum - minimum;
+	increment = Difference / 30;
+	double sma = 0.0;
+	for (int rows = 0; rows < 30; rows++) { // looping through rows
+		maximum = maximum - increment;
+		cout << setw(5) << maximum << " " << char(180);
+
+		for (int j = 0; j < days.size(); j++) { // loop through col
+
+			if (j > 9) {
+				
+					for (int x = 0; x < 9; x++) {
+						sma =  Close[j-x] + sma;
+						
+						
+					}
+				
+			}
+			sma = sma / 9;
+			
+		}
+		cout << endl;
+		cout << char(129);
+		
+	}
+	calculationsXaxis();
 }

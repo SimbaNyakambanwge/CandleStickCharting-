@@ -15,5 +15,6 @@ FinanceDirector::FinanceDirector() {
 	cout << "Author:  Simbarashe Nyakambangwe" << endl;
 	cout << "SID:  8316064" << endl << endl;
 
-	cout << "please enter a name of a file including csv" << endl;
+	cout << "please enter a name of a file including .csv" << endl;
+	cout << "The options are" << endl << "BTChist.csv" << " " << "BTChist2.csv" << " " << "BTChist3.csv" << " " << "BTChist4.csv" << endl;
 }
