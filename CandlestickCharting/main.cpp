@@ -15,13 +15,16 @@ using namespace std;
 int  main()
 
 {
-	FinanceDirector Financeobject;
+
        
 	DataManager Managerobject;
 	Managerobject.datasave();
-	Managerobject.calculationsXaxis();
+	Managerobject.candlestick();
+	Managerobject.calculationsxaxis();
 	Managerobject.bargraph();
 	Managerobject.sma();
+	FinanceDirector object;
+	object.savingfileuser();
 	
 		
 		

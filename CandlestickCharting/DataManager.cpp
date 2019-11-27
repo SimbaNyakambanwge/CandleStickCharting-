@@ -1,4 +1,3 @@
-#include "FinanceDirector.h"
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -7,8 +6,10 @@
 #include <vector>
 #include <algorithm>
 #include "DataManager.h"
+#include "FinanceDirector.h"
 using namespace std;
 
+FinanceDirector object;
 void DataManager::datasave() {
 
 	string filename;
@@ -86,53 +87,6 @@ void DataManager::datasave() {
 		}
 
 		cout << endl;
-		reversedata();
-		
-		double maximum = *max_element(High.begin(), High.end());
-		
-		double minimum = *min_element(Low.begin(), Low.end());
-		
-		double Difference;
-
-		double increment;
-
-		Difference = maximum - minimum;
-		
-		increment = Difference / 30;
-
-		const double HALF_INC = increment / 2;
-		
-		
-		for (int rows = 0; rows < 30; rows++) { // looping through rows
-			maximum = maximum - increment;
-			cout << setw(5) << maximum << " " << char(180);
-
-			for (int j = 0; j < days.size(); j++) { // loop through col
-
-				if (Close[j] >= maximum - HALF_INC && maximum + HALF_INC >= Open[j])
-				{
-					cout << char(219);
-
-				}
-				else if (Open[j] >= maximum - HALF_INC && maximum + HALF_INC >= Close[j])
-				{
-					cout << char(176);
-				}
-				else if (maximum - HALF_INC <= High[j] && maximum + HALF_INC >= Low[j]) {
-					cout << char(179);
-				}
-				else if (maximum + HALF_INC >= High[j] && maximum - HALF_INC <= Low[j]) {
-					cout << char(179);
-				}
-				else
-				{
-					cout << " ";
-				}
-
-
-			}
-			cout << endl;
-		}
 		
 		
 		
@@ -142,11 +96,9 @@ void DataManager::datasave() {
 
 	else
 	{
-		cout << "Error opening input file, ";
-		cout << "check 'BTChist.csv' exists in correct directory." << endl;
-		cout << "Please input another valid filename" << endl;
-
-
+	FinanceDirector object;
+	object.error();
+		
 	}
 
 
@@ -155,14 +107,9 @@ void DataManager::datasave() {
 
 
 }
-void DataManager::calculationsXaxis() {
+void DataManager::calculationsxaxis() {
 	 reversedata();
-	/*for (int line = 0; line < 65; line++)
-	{
-		cout.fill(char(196));
-		cout << char(196);
-
-	}*/
+	
 	cout << endl;
 	cout << setw(7);
 	cout << "   ";
@@ -190,7 +137,7 @@ void DataManager::bargraph() {
 	for (int i = 0; i < 30; i++) {
 		highest = (highest - increment);
 		
-		Yaxis = highest / divider;
+		Yaxis = highest / DIVIDER;
 		
 		cout << setw(3) << Yaxis << "Bil " << char(180);
 		
@@ -207,7 +154,7 @@ void DataManager::bargraph() {
 		}
 		cout << endl;
 	}
-	calculationsXaxis();
+	calculationsxaxis();
 }
 void DataManager::reversedata() {
 	reverse(Open.begin(), Open.end());
@@ -227,7 +174,8 @@ void DataManager::sma() {
     double increment;
     Difference = maximum - minimum;
 	increment = Difference / 30;
-	double sma = 0.0;
+	double sma= 0.0;
+	
 	for (int rows = 0; rows < 30; rows++) { // looping through rows
 		maximum = maximum - increment;
 		cout << setw(5) << maximum << " " << char(180);
@@ -235,20 +183,80 @@ void DataManager::sma() {
 		for (int j = 0; j < days.size(); j++) { // loop through col
 
 			if (j > 9) {
+
+				for (int x = 0; x < 9; x++) {
+					sma = Close[j -x] + sma;
+				}
 				
-					for (int x = 0; x < 9; x++) {
-						sma =  Close[j-x] + sma;
-						
-						
-					}
+				sma = sma / 9;
 				
 			}
-			sma = sma / 9;
-			
+				if (maximum < sma) {
+
+					cout << "x";
+				}
+				
+				else {
+					cout << " " ;
+				}
+		
 		}
 		cout << endl;
-		cout << char(129);
+		
 		
 	}
-	calculationsXaxis();
+	calculationsxaxis();
+}
+void FinanceDirector::savingfileuser() {
+	char save;
+	cout << "If you would like to save this file into a new text file enter 'y' or 'Y' if not enter n" << endl;
+	cin >> save;
+	if (save == 'y' || 'Y')
+	{
+		savingfileprogram();
+	}
+	if (save == 'n' || 'N')
+	{
+		FinanceDirector();
+	}
+
+}
+void DataManager::candlestick() {
+double maximum = *max_element(High.begin(), High.end());
+double minimum = *min_element(Low.begin(), Low.end());
+double difference;
+double increment;
+difference = maximum - minimum;
+increment = difference / 30;
+const double HALF_INC = increment / 2;
+for (int rows = 0; rows < 30; rows++) { // looping through rows
+		maximum = maximum - increment;
+		cout << setw(5) << maximum << " " << char(180);
+
+ for (int j = 0; j < days.size(); j++) { // loop through col
+
+		    if (Close[j] >= maximum - HALF_INC && maximum + HALF_INC >= Open[j])
+			{
+				cout << char(219);
+
+			}
+			else if (Open[j] >= maximum - HALF_INC && maximum + HALF_INC >= Close[j])
+			{
+				cout << char(176);
+			}
+			else if (maximum - HALF_INC <= High[j] && maximum + HALF_INC >= Low[j]) {
+				cout << char(179);
+			}
+			else if (maximum + HALF_INC >= High[j] && maximum - HALF_INC <= Low[j]) {
+				cout << char(179);
+			}
+			else
+			{
+				cout << " ";
+			}
+
+
+ }
+		cout << endl;
+}
 }

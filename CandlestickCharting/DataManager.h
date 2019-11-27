@@ -19,17 +19,20 @@ private:
 	vector<long long>Volume;
 	vector<double>Market_Cap;
 	vector<double> days;
-	const int divider = 100000000;
+	const int DIVIDER = 100000000;
+	
 
 
 
 public:
 	
 	void datasave();
-	void calculationsXaxis();
+	void calculationsxaxis();
 	void bargraph();
 	void reversedata();
 	void sma();
+	void candlestick();
+	
 	
 
 };
