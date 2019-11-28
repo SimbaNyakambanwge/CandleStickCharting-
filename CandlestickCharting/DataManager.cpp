@@ -208,21 +208,8 @@ void DataManager::sma() {
 	}
 	calculationsxaxis();
 }
-void FinanceDirector::savingfileuser() {
-	char save;
-	cout << "If you would like to save this file into a new text file enter 'y' or 'Y' if not enter n" << endl;
-	cin >> save;
-	if (save == 'y' || 'Y')
-	{
-		savingfileprogram();
-	}
-	if (save == 'n' || 'N')
-	{
-		FinanceDirector();
-	}
 
-}
-void DataManager::candlestick() {
+void DataManager::candlestick(ostream& os) {
 double maximum = *max_element(High.begin(), High.end());
 double minimum = *min_element(Low.begin(), Low.end());
 double difference;
@@ -232,32 +219,56 @@ increment = difference / 30;
 const double HALF_INC = increment / 2;
 for (int rows = 0; rows < 30; rows++) { // looping through rows
 		maximum = maximum - increment;
-		cout << setw(5) << maximum << " " << char(180);
+		os << setw(5) << maximum << " " << char(180);
 
  for (int j = 0; j < days.size(); j++) { // loop through col
 
 		    if (Close[j] >= maximum - HALF_INC && maximum + HALF_INC >= Open[j])
 			{
-				cout << char(219);
+				os << char(219);
 
 			}
 			else if (Open[j] >= maximum - HALF_INC && maximum + HALF_INC >= Close[j])
 			{
-				cout << char(176);
+				os << char(176);
 			}
 			else if (maximum - HALF_INC <= High[j] && maximum + HALF_INC >= Low[j]) {
-				cout << char(179);
+				os << char(179);
 			}
 			else if (maximum + HALF_INC >= High[j] && maximum - HALF_INC <= Low[j]) {
-				cout << char(179);
+				os << char(179);
 			}
 			else
 			{
-				cout << " ";
+				os << " ";
 			}
 
 
  }
-		cout << endl;
+		os << endl;
 }
 }
+
+void DataManager::savetofile(ostream& os)
+{
+
+}
+void DataManager::outputfile() {
+	savetofile(cout);
+	char save;
+	cout << "If you would like to save this file into a new text file enter 'y' or 'Y' if not enter n" << endl;
+	cin >> save;
+	if (save == 'y' || save == 'Y')
+	{
+		ofstream outputFile;
+		outputFile.open("output.txt");
+		candlestick(outputFile);
+		outputFile.close();
+		
+	}
+	if (save == 'n' || save == 'N')
+	{
+		
+	}
+}
+

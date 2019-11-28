@@ -19,12 +19,12 @@ int  main()
        
 	DataManager Managerobject;
 	Managerobject.datasave();
-	Managerobject.candlestick();
+	Managerobject.candlestick(cout);
 	Managerobject.calculationsxaxis();
 	Managerobject.bargraph();
 	Managerobject.sma();
 	FinanceDirector object;
-	object.savingfileuser();
+	
 	
 		
 		
