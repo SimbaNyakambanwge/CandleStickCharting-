@@ -29,7 +29,7 @@ public:
 	void datasave();
 	void calculationsxaxis(ostream& os);
 	void bargraph(ostream& os);
-	void reversedata();
+	void reversedata(ostream& os);
 	void sma(ostream& os);
 	void candlestick(ostream& os);
 	void savetofile(ostream& os);

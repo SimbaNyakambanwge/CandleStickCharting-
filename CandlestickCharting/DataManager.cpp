@@ -81,11 +81,11 @@ void DataManager::datasave() {
 				
 
 			}
-			/*cout << endl;
-			cout << setprecision(0) << endl;;*/
+			
 			getline(inputFileStream, line); // read next line
+			
 		}
-
+		
 		cout << endl;
 		
 		
@@ -93,7 +93,7 @@ void DataManager::datasave() {
 
 	}
 
-
+	
 	else
 	{
 	FinanceDirector object;
@@ -108,7 +108,7 @@ void DataManager::datasave() {
 
 }
 void DataManager::calculationsxaxis(ostream& os) {
-	 reversedata();
+	reverse(days.begin(), days.end());
 	
 	os << endl;
 	os << setw(7);
@@ -124,7 +124,8 @@ void DataManager::calculationsxaxis(ostream& os) {
 
 }
 void DataManager::bargraph(ostream& os) {
-	reversedata();
+	reverse(Volume.begin(), Volume.end());
+	reverse(days.begin(), days.end());
 	long long increment;
 	long long difference;
 	long long Yaxis;
@@ -156,17 +157,20 @@ void DataManager::bargraph(ostream& os) {
 	}
 	calculationsxaxis(os);
 }
-void DataManager::reversedata() {
-	reverse(Open.begin(), Open.end());
-	reverse(High.begin(), High.end());
-	reverse(Low.begin(), Low.end());
-	reverse(Close.begin(), Close.end());
-	reverse(Volume.begin(), Volume.end());
+void DataManager::reversedata(ostream&os) {
+	
+	
+	
+	
+	
 	reverse(Market_Cap.begin(), Market_Cap.end());
-	reverse(days.begin(), days.end());
+	
 }
 void DataManager::sma(ostream& os) {
-	reversedata();
+	
+	reverse(High.begin(), High.end());
+	reverse(Low.begin(), Low.end());
+	reverse(days.begin(), days.end());
 
 	double maximum = *max_element(High.begin(), High.end());
     double minimum = *min_element(Low.begin(), Low.end());
@@ -210,6 +214,11 @@ void DataManager::sma(ostream& os) {
 }
 
 void DataManager::candlestick(ostream& os) {
+	reverse(Open.begin(), Open.end());
+	reverse(High.begin(), High.end());
+	reverse(Low.begin(), Low.end());
+	reverse(Close.begin(), Close.end());
+
 double maximum = *max_element(High.begin(), High.end());
 double minimum = *min_element(Low.begin(), Low.end());
 double difference;
