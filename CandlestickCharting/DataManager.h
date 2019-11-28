@@ -27,10 +27,10 @@ private:
 public:
 	
 	void datasave();
-	void calculationsxaxis();
-	void bargraph();
+	void calculationsxaxis(ostream& os);
+	void bargraph(ostream& os);
 	void reversedata();
-	void sma();
+	void sma(ostream& os);
 	void candlestick(ostream& os);
 	void savetofile(ostream& os);
 	void outputfile();

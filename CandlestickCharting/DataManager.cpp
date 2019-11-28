@@ -81,8 +81,8 @@ void DataManager::datasave() {
 				
 
 			}
-			cout << endl;
-			cout << setprecision(0) << endl;;
+			/*cout << endl;
+			cout << setprecision(0) << endl;;*/
 			getline(inputFileStream, line); // read next line
 		}
 
@@ -107,23 +107,23 @@ void DataManager::datasave() {
 
 
 }
-void DataManager::calculationsxaxis() {
+void DataManager::calculationsxaxis(ostream& os) {
 	 reversedata();
 	
-	cout << endl;
-	cout << setw(7);
-	cout << "   ";
+	os << endl;
+	os << setw(7);
+	os << "   ";
 	for (int x = 0; x < days.size(); x += 3)
 	{
-		cout.fill('0');
-		cout << setw(2) << days[x] << " ";
+		os.fill('0');
+		os << setw(2) <<setprecision(0)<< days[x] << " ";
 
 	}
-	cout << endl;
-	cout << endl;
+	os << endl;
+	os << endl;
 
 }
-void DataManager::bargraph() {
+void DataManager::bargraph(ostream& os) {
 	reversedata();
 	long long increment;
 	long long difference;
@@ -139,22 +139,22 @@ void DataManager::bargraph() {
 		
 		Yaxis = highest / DIVIDER;
 		
-		cout << setw(3) << Yaxis << "Bil " << char(180);
+		os << setw(3) << setprecision(0)<< Yaxis << "Bil " << char(180);
 		
 		for (int j = 0; j < days.size(); j++) {
 			if (Volume[j] >= highest && Open[j] < Close[j]) {
-				cout << char(219);
+				os << char(219);
 			}
 			else if (Volume[j] >= highest && Open[j] > Close[j]) {
-				cout << char(176);
+				os << char(176);
 			}
 			else
-				cout << " ";
+				os << " ";
 				
 		}
-		cout << endl;
+		os << endl;
 	}
-	calculationsxaxis();
+	calculationsxaxis(os);
 }
 void DataManager::reversedata() {
 	reverse(Open.begin(), Open.end());
@@ -165,7 +165,7 @@ void DataManager::reversedata() {
 	reverse(Market_Cap.begin(), Market_Cap.end());
 	reverse(days.begin(), days.end());
 }
-void DataManager::sma() {
+void DataManager::sma(ostream& os) {
 	reversedata();
 
 	double maximum = *max_element(High.begin(), High.end());
@@ -179,7 +179,7 @@ void DataManager::sma() {
 	
 	for (int rows = 0; rows < 30; rows++) { // looping through rows
 		maximum = maximum - increment;
-		cout << setw(5) << maximum << " " << char(180);
+		os << setw(5) << setprecision(0)<< maximum << " " << char(180);
 
 		for (int j = 0; j < days.size(); j++) { // loop through col
 
@@ -194,19 +194,19 @@ void DataManager::sma() {
 			}
 				if (maximum + HALF_INC > sma && sma > maximum - HALF_INC) {
 
-					cout << "x";
+					os << "x";
 				}
 				
 				else {
-					cout << " " ;
+					os << " " ;
 				}
 		
 		}
-		cout << endl;
+		os << endl;
 		
 		
 	}
-	calculationsxaxis();
+	calculationsxaxis(os);
 }
 
 void DataManager::candlestick(ostream& os) {
@@ -219,7 +219,7 @@ increment = difference / 30;
 const double HALF_INC = increment / 2;
 for (int rows = 0; rows < 30; rows++) { // looping through rows
 		maximum = maximum - increment;
-		os << setw(5) << maximum << " " << char(180);
+		os << setw(5) <<setprecision(0)<< maximum << " " << char(180);
 
  for (int j = 0; j < days.size(); j++) { // loop through col
 
@@ -263,6 +263,9 @@ void DataManager::outputfile() {
 		ofstream outputFile;
 		outputFile.open("output.txt");
 		candlestick(outputFile);
+		sma(outputFile);
+		bargraph(outputFile);
+		calculationsxaxis(outputFile);
 		outputFile.close();
 		
 	}
