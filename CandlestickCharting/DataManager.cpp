@@ -174,6 +174,7 @@ void DataManager::sma() {
     double increment;
     Difference = maximum - minimum;
 	increment = Difference / 30;
+	const double HALF_INC = increment / 2;
 	double sma= 0.0;
 	
 	for (int rows = 0; rows < 30; rows++) { // looping through rows
@@ -191,7 +192,7 @@ void DataManager::sma() {
 				sma = sma / 9;
 				
 			}
-				if (maximum < sma) {
+				if (maximum + HALF_INC > sma && sma > maximum - HALF_INC) {
 
 					cout << "x";
 				}
