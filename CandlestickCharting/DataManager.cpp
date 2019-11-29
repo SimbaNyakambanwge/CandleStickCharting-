@@ -258,6 +258,7 @@ for (int rows = 0; rows < 30; rows++) { // looping through rows
  }
 		os << endl;
 }
+calculationsxaxis(os);
 }
 
 void DataManager::savetofile(ostream& os)
@@ -267,12 +268,16 @@ void DataManager::savetofile(ostream& os)
 void DataManager::outputfile() {
 	savetofile(cout);
 	char save;
+	string filename;
+
 	cout << "If you would like to save this file into a new text file enter 'y' or 'Y' if not enter n" << endl;
 	cin >> save;
 	if (save == 'y' || save == 'Y')
 	{
+		cout << "Pease enter the name of the file you want to save to" << endl;
+		cin >> filename;
 		ofstream outputFile;
-		outputFile.open("output.txt");
+		outputFile.open(filename);
 		candlestick(outputFile);
 		sma(outputFile);
 		bargraph(outputFile);
