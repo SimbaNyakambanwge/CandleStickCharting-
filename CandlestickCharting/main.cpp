@@ -38,6 +38,7 @@ int  main()
 		Managerobject.ma(cout);
 		Managerobject.savetofile(cout);
 		Managerobject.outputfile();
+		
 	}
 
 	

@@ -58,8 +58,8 @@ void DataManager::datasave() {
 			
 
 			cout << fixed;
-
-			for (int i = 0; i < 6; i++) { // loops through the remaining 6 columns
+			int columns = 6;
+			for (int i = 0; i < columns; i++) { // loops through the remaining 6 columns
 				string field;
 				double fieldData;
 				getline(ss, field, ','); // read next field, might fail
@@ -67,17 +67,17 @@ void DataManager::datasave() {
 				fss >> fieldData; // try to convert to a double, this might fail !!!
 
 				if (i == 0)
-					Open.push_back(fieldData);
+					open.push_back(fieldData);
 				if (i == 1)
-					High.push_back(fieldData);
+					high.push_back(fieldData);
 				if (i == 2)
-					Low.push_back(fieldData);
+					low.push_back(fieldData);
 				if (i == 3)
-					Close.push_back(fieldData);
+					close.push_back(fieldData);
 				if (i == 4)
-					Volume.push_back(fieldData);
+					volume.push_back(fieldData);
 				if (i == 5)
-					Market_Cap.push_back(fieldData);
+					market_Cap.push_back(fieldData);
 				
 
 			}
@@ -109,11 +109,11 @@ void DataManager::datasave() {
 }
 void DataManager::calculationsxaxis(ostream& os) {
 	reverse(days.begin(), days.end());
-	
+	const int DAYS_INC = 3;
 	os << endl;
 	os << setw(7);
 	os << "   ";
-	for (int x = 0; x < days.size(); x += 3)
+	for (int x = 0; x < days.size(); x += DAYS_INC)
 	{
 		os.fill('0');
 		os << setw(2) <<setprecision(0)<< days[x] << " ";
@@ -124,18 +124,20 @@ void DataManager::calculationsxaxis(ostream& os) {
 
 }
 void DataManager::bargraph(ostream& os) {
-	reverse(Volume.begin(), Volume.end());
+	reverse(volume.begin(), volume.end());
 	reverse(days.begin(), days.end());
 	long long increment;
 	long long difference;
 	long long Yaxis;
-	long long highest = *max_element(Volume.begin(), Volume.end());
-	long long lowest = *min_element(Volume.begin(), Volume.end());
+	const int DIVISIONS = 30;
+	long long highest = *max_element(volume.begin(), volume.end());
+	long long lowest = *min_element(volume.begin(), volume.end());
 	difference = highest - lowest;
-	increment = (difference / 30) ;
+	increment = (difference / DIVISIONS) ;
 	
-	
-	for (int i = 0; i < 30; i++) {
+	os << "Bargraph" << endl;
+	os << endl;
+	for (int i = 0; i < DIVISIONS; i++) {
 		highest = (highest - increment);
 		
 		Yaxis = highest / DIVIDER;
@@ -143,10 +145,10 @@ void DataManager::bargraph(ostream& os) {
 		os << setw(3) << setprecision(0)<< Yaxis << "Bil " << char(180);
 		
 		for (int j = 0; j < days.size(); j++) {
-			if (Volume[j] >= highest && Open[j] < Close[j]) {
+			if (volume[j] >= highest && open[j] < close[j]) {
 				os << char(219);
 			}
-			else if (Volume[j] >= highest && Open[j] > Close[j]) {
+			else if (volume[j] >= highest && open[j] > close[j]) {
 				os << char(176);
 			}
 			else
@@ -163,17 +165,17 @@ void DataManager::reversedata(ostream&os) {
 	
 	
 	
-	reverse(Market_Cap.begin(), Market_Cap.end());
+	reverse(market_Cap.begin(), market_Cap.end());
 	
 }
 void DataManager::sma(ostream& os) {
 	
-	reverse(High.begin(), High.end());
-	reverse(Low.begin(), Low.end());
+	reverse(high.begin(), high.end());
+	reverse(low.begin(), low.end());
 	reverse(days.begin(), days.end());
 
-	double maximum = *max_element(High.begin(), High.end());
-    double minimum = *min_element(Low.begin(), Low.end());
+	double maximum = *max_element(high.begin(), high.end());
+    double minimum = *min_element(low.begin(), low.end());
 	double Difference;
     double increment;
     Difference = maximum - minimum;
@@ -190,7 +192,7 @@ void DataManager::sma(ostream& os) {
 			if (j > 9) {
 
 				for (int x = 0; x < 9; x++) {
-					sma = Close[j -x] + sma;
+					sma = close[j -x] + sma;
 				}
 				
 				sma = sma / 9;
@@ -214,13 +216,13 @@ void DataManager::sma(ostream& os) {
 }
 
 void DataManager::candlestick(ostream& os) {
-	reverse(Open.begin(), Open.end());
-	reverse(High.begin(), High.end());
-	reverse(Low.begin(), Low.end());
-	reverse(Close.begin(), Close.end());
+	reverse(open.begin(), open.end());
+	reverse(high.begin(), high.end());
+	reverse(low.begin(), low.end());
+	reverse(close.begin(), close.end());
 
-double maximum = *max_element(High.begin(), High.end());
-double minimum = *min_element(Low.begin(), Low.end());
+double maximum = *max_element(high.begin(), high.end());
+double minimum = *min_element(low.begin(), low.end());
 double difference;
 double increment;
 difference = maximum - minimum;
@@ -232,19 +234,19 @@ for (int rows = 0; rows < 30; rows++) { // looping through rows
 
  for (int j = 0; j < days.size(); j++) { // loop through col
 
-		    if (Close[j] >= maximum - HALF_INC && maximum + HALF_INC >= Open[j])
+		    if (close[j] >= maximum - HALF_INC && maximum + HALF_INC >= open[j])
 			{
 				os << char(219);
 
 			}
-			else if (Open[j] >= maximum - HALF_INC && maximum + HALF_INC >= Close[j])
+			else if (open[j] >= maximum - HALF_INC && maximum + HALF_INC >= close[j])
 			{
 				os << char(176);
 			}
-			else if (maximum - HALF_INC <= High[j] && maximum + HALF_INC >= Low[j]) {
+			else if (maximum - HALF_INC <= high[j] && maximum + HALF_INC >= low[j]) {
 				os << char(179);
 			}
-			else if (maximum + HALF_INC >= High[j] && maximum - HALF_INC <= Low[j]) {
+			else if (maximum + HALF_INC >= high[j] && maximum - HALF_INC <= low[j]) {
 				os << char(179);
 			}
 			else
@@ -277,25 +279,29 @@ void DataManager::outputfile() {
 		ma(outputFile);
 		calculationsxaxis(outputFile);
 		outputFile.close();
+		cout << "saving has been done" << endl;
 		
 	}
 	if (save == 'n' || save == 'N')
 	{
+		cout << "If you would like to open another file enter the name" << endl;
+	}
+	else {
 		
 	}
 }
 void DataManager::ma(ostream& os) {
-	reverse(High.begin(), High.end());
-	reverse(Low.begin(), Low.end());
+	reverse(high.begin(), high.end());
+	reverse(low.begin(), low.end());
 	reverse(days.begin(), days.end());
 
-	double maximum = *max_element(High.begin(), High.end());
-	double minimum = *min_element(Low.begin(), Low.end());
+	double maximum = *max_element(high.begin(), high.end());
+	double minimum = *min_element(low.begin(), low.end());
 	double Difference;
 	double increment;
 	Difference = maximum - minimum;
 	increment = Difference / 30;
-	const double HALF_INC = increment / 2;
+	const double HALF_INC = 50;
 	double ma1 = 0.0;
 	double ma2 = 0.0;
 
@@ -308,7 +314,7 @@ void DataManager::ma(ostream& os) {
 			if (j > 9) {
 
 				for (int x = 0; x < 9; x++) {
-					ma1 = Close[j - x] + ma1;
+					ma1 = close[j - x] + ma1;
 				}
 
 				ma1 = ma1 / 9;
@@ -316,12 +322,12 @@ void DataManager::ma(ostream& os) {
 			}
 			if (maximum + HALF_INC > ma1 && ma1 > maximum - HALF_INC) {
 
-				os << "x";
+				os << char(167);
 			}
 
 			else if (j > 5) {
 				for (int x = 0; x < 5; x++) {
-					ma2 = Close[j - x] + ma2;
+					ma2 = close[j - x] + ma2;
 				}
 				ma2 = ma2 / 5;
 			}
@@ -329,7 +335,12 @@ void DataManager::ma(ostream& os) {
 				os << ".";
 				
 			}
-			else {
+			else if((maximum + HALF_INC > ma1 && ma1 > maximum - HALF_INC) || (maximum + HALF_INC > ma2 && ma2 > maximum - HALF_INC)) 
+			{
+				os << char(167);
+			}
+			else
+			{
 				os << " ";
 			}
 
@@ -342,7 +353,7 @@ void DataManager::ma(ostream& os) {
 }
 bool DataManager::loopback() {
 	string userinput;
-	cout << " Would you like to run another file" << endl;
+	
 	if (userinput == "y" || userinput == "Y" || userinput == "yes") {
 		return true;
 	}

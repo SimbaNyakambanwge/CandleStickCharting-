@@ -12,12 +12,12 @@ class DataManager
 {
 private:
 	string director;
-	vector<double>High;
-	vector<double>Low;
-	vector<double>Open;
-	vector<double>Close;
-	vector<long long>Volume;
-	vector<double>Market_Cap;
+	vector<double>high;
+	vector<double>low;
+	vector<double>open;
+	vector<double>close;
+	vector<long long>volume;
+	vector<double>market_Cap;
 	vector<double> days;
 	const int DIVIDER = 100000000;
 	
