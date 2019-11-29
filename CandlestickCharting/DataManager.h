@@ -31,6 +31,7 @@ public:
 	void bargraph(ostream& os);
 	void reversedata(ostream& os);
 	void sma(ostream& os);
+	void ma(ostream& os);
 	void candlestick(ostream& os);
 	void savetofile(ostream& os);
 	void outputfile();

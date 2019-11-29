@@ -274,6 +274,7 @@ void DataManager::outputfile() {
 		candlestick(outputFile);
 		sma(outputFile);
 		bargraph(outputFile);
+		ma(outputFile);
 		calculationsxaxis(outputFile);
 		outputFile.close();
 		
@@ -282,5 +283,61 @@ void DataManager::outputfile() {
 	{
 		
 	}
+}
+void DataManager::ma(ostream& os) {
+	reverse(High.begin(), High.end());
+	reverse(Low.begin(), Low.end());
+	reverse(days.begin(), days.end());
+
+	double maximum = *max_element(High.begin(), High.end());
+	double minimum = *min_element(Low.begin(), Low.end());
+	double Difference;
+	double increment;
+	Difference = maximum - minimum;
+	increment = Difference / 30;
+	const double HALF_INC = increment / 2;
+	double ma1 = 0.0;
+	double ma2 = 0.0;
+
+	for (int rows = 0; rows < 30; rows++) { // looping through rows
+		maximum = maximum - increment;
+		os << setw(5) << setprecision(0) << maximum << " " << char(180);
+
+		for (int j = 0; j < days.size(); j++) { // loop through col
+
+			if (j > 9) {
+
+				for (int x = 0; x < 9; x++) {
+					ma1 = Close[j - x] + ma1;
+				}
+
+				ma1 = ma1 / 9;
+
+			}
+			if (maximum + HALF_INC > ma1 && ma1 > maximum - HALF_INC) {
+
+				os << "x";
+			}
+
+			else if (j > 5) {
+				for (int x = 0; x < 5; x++) {
+					ma2 = Close[j - x] + ma2;
+				}
+				ma2 = ma2 / 5;
+			}
+			if(maximum +HALF_INC > ma2 && ma2 > maximum - HALF_INC){
+				os << ".";
+				
+			}
+			else {
+				os << " ";
+			}
+
+		}
+		os << endl;
+
+
+	}
+	calculationsxaxis(os);
 }
 

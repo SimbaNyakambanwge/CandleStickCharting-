@@ -23,6 +23,7 @@ int  main()
 	Managerobject.calculationsxaxis(cout);
 	Managerobject.bargraph(cout);
 	Managerobject.sma(cout);
+	Managerobject.ma(cout);
 	Managerobject.savetofile(cout);
 	FinanceDirector object;
 	
