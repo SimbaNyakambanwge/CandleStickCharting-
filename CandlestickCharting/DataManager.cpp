@@ -340,4 +340,14 @@ void DataManager::ma(ostream& os) {
 	}
 	calculationsxaxis(os);
 }
+bool DataManager::loopback() {
+	string userinput;
+	cout << " Would you like to run another file" << endl;
+	if (userinput == "y" || userinput == "Y" || userinput == "yes") {
+		return true;
+	}
+	else if (userinput == "n" || userinput == "no" || userinput == "NO") {
+		return false;
+	}
+}
 

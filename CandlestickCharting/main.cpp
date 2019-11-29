@@ -25,7 +25,21 @@ int  main()
 	Managerobject.sma(cout);
 	Managerobject.ma(cout);
 	Managerobject.savetofile(cout);
-	FinanceDirector object;
+	Managerobject.outputfile();
+	
+
+	while (true) {
+		DataManager Managerobject;
+		Managerobject.datasave();
+		Managerobject.candlestick(cout);
+		Managerobject.calculationsxaxis(cout);
+		Managerobject.bargraph(cout);
+		Managerobject.sma(cout);
+		Managerobject.ma(cout);
+		Managerobject.savetofile(cout);
+		Managerobject.outputfile();
+	}
+
 	
 	
 		

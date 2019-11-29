@@ -35,6 +35,7 @@ public:
 	void candlestick(ostream& os);
 	void savetofile(ostream& os);
 	void outputfile();
+	bool loopback();
 	
 	
 
