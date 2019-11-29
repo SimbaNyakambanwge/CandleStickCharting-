@@ -48,9 +48,7 @@ void FinanceDirector::error(){
 	cout << "Please retype the name of the input file" << endl;
 	
 }
-void FinanceDirector::savingfileprogram() {
-	cout << "this is where the saving of the file will occur" << endl;
-}
+
 	
 	
 	
@@ -61,12 +59,7 @@ void FinanceDirector::savingfileprogram() {
 	
 	
 	
-	/*DataManager();
-	DataManager Managerobject;
-	fstream analysisfile;
-	analysisfile.open("output_file.txt");
-	analysisfile.write  (Managerobject.bargraph();)
-	analysisfile.close();*/
+	
 	
 
 	

@@ -19,11 +19,7 @@ private:
 	vector<long long>volume;
 	vector<double>market_Cap;
 	vector<double> days;
-	const int DIVIDER = 100000000;
-	
-
-
-
+	const int DIVIDER = 1000000000;
 public:
 	
 	void datasave();

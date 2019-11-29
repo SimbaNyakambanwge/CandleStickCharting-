@@ -291,9 +291,7 @@ void DataManager::outputfile() {
 	{
 		cout << "If you would like to open another file enter the name" << endl;
 	}
-	else {
-		
-	}
+	
 }
 void DataManager::ma(ostream& os) {
 	reverse(high.begin(), high.end());

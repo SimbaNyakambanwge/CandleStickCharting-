@@ -14,9 +14,7 @@ using namespace std;
 
 int  main()
 
-{
-
-       
+{    
 	DataManager Managerobject;
 	Managerobject.datasave();
 	Managerobject.candlestick(cout);
@@ -27,7 +25,7 @@ int  main()
 	Managerobject.outputfile();
 	
 
-	while (true) {
+    while (true) {
 		DataManager Managerobject;
 		Managerobject.datasave();
 		Managerobject.candlestick(cout);
