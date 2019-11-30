@@ -7,9 +7,10 @@
 #include <algorithm>
 #include "DataManager.h"
 #include "FinanceDirector.h"
+
 using namespace std;
 
-FinanceDirector object;
+
 void DataManager::datasave() {
 
 	string filename;
@@ -285,12 +286,14 @@ void DataManager::outputfile() {
 		calculationsxaxis(outputFile);
 		outputFile.close();
 		cout << "saving has been done" << endl;
+		loopback();
 		
 	}
-	if (save == 'n' || save == 'N')
+	else if (save == 'n' || save == 'N')
 	{
-		cout << "If you would like to open another file enter the name" << endl;
+		loopback();
 	}
+	
 	
 }
 void DataManager::ma(ostream& os) {
@@ -356,11 +359,13 @@ void DataManager::ma(ostream& os) {
 }
 bool DataManager::loopback() {
 	string userinput;
-	
-	if (userinput == "y" || userinput == "Y" || userinput == "yes") {
+	cout << "Would you like to open another file?" << endl;
+	cin >> userinput;
+	if (userinput == "y" || userinput == "Y" || userinput == "yes"|| userinput == "YES") {
+		cout << "Please enter the file you would like to open"<< endl;
 		return true;
 	}
-	else if (userinput == "n" || userinput == "no" || userinput == "NO") {
+	else if (userinput == "n" || userinput == "no" || userinput == "NO"|| userinput== "N") {
 		return false;
 	}
 }

@@ -25,24 +25,31 @@ FinanceDirector::FinanceDirector() {
 	cout << "BTChist4.csv" << endl;
 	cout << endl;
 }
-void FinanceDirector::finance() {
-	string filename;
-	director = filename;
-	cin >> filename;
-	ifstream inputdata;
-	inputdata.open(filename);
+void FinanceDirector::output() {
 
-	ifstream inputFilestream;
-	inputFilestream.open(filename);
+	DataManager Managerobject;
+	Managerobject.datasave();
+	Managerobject.candlestick(cout);
+	Managerobject.bargraph(cout);
+	Managerobject.sma(cout);
+	Managerobject.ma(cout);
+	Managerobject.savetofile(cout);
+	Managerobject.outputfile();
 
-	if (inputFilestream.good())
-	{
-		DataManager object;
-		object.datasave();
+
+	while (true) {
+		DataManager Managerobject;
+		Managerobject.datasave();
+		Managerobject.candlestick(cout);
+		Managerobject.bargraph(cout);
+		Managerobject.sma(cout);
+		Managerobject.ma(cout);
+		Managerobject.savetofile(cout);
+		Managerobject.outputfile();
 
 	}
-	else
-		cout << "Please retype the name of the input file" << endl;
+
+	
 }
 void FinanceDirector::error(){
 	cout << "Please retype the name of the input file" << endl;

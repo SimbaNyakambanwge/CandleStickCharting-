@@ -16,8 +16,9 @@ public:
 	FinanceDirector();
 	void finance();
 	void error();
-	void savingfileuser();
-	void savingfileprogram();
+	void output();
+	
+
 };
 
 
