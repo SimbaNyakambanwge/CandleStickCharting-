@@ -10,8 +10,59 @@
 
 using namespace std;
 
-FinanceDirector::FinanceDirector() {
+FinanceDirector::FinanceDirector(){}
 
+
+void FinanceDirector::output() {
+	
+	
+		DataManager Managerobject;
+		Managerobject.datasave();
+		cout << "CandleStick Chart" << endl;
+		cout << endl;
+		Managerobject.candlestick(cout);
+		cout << "Bar Graph" << endl;
+		cout << endl;
+		Managerobject.bargraph(cout);
+		cout << "Simple Moving Average" << endl;
+		cout << endl;
+		Managerobject.sma(cout);
+		cout << "Moving Average" << endl;
+		cout << endl;
+		Managerobject.ma(cout);
+		Managerobject.savetofile(cout);
+		Managerobject.outputfile();
+	
+
+
+	while (true) {
+		DataManager Managerobject;
+		Managerobject.datasave();
+		cout << "CandleStick Chart" << endl;
+		cout << endl;
+		Managerobject.candlestick(cout);
+		cout << "Bar Graph" << endl;
+		cout << endl;
+		Managerobject.bargraph(cout);
+		cout << "Simple Moving Average" << endl;
+		cout << endl;
+		Managerobject.sma(cout);
+		cout << "Moving Average" << endl;
+		cout << endl;
+		Managerobject.ma(cout);
+		Managerobject.savetofile(cout);
+		Managerobject.outputfile();
+
+	}
+
+	
+}
+void FinanceDirector::error(){
+	cout << "Please retype the name of the input file" << endl;
+	DataManager object;
+	object.datasave();
+}
+void FinanceDirector::userinteraction() {
 	cout << "Data Analysis" << endl;
 	cout << "Author:  Simbarashe Nyakambangwe" << endl;
 	cout << "SID:  8316064" << endl << endl;
@@ -24,36 +75,6 @@ FinanceDirector::FinanceDirector() {
 	cout << "BTChist3.csv" << endl;
 	cout << "BTChist4.csv" << endl;
 	cout << endl;
-}
-void FinanceDirector::output() {
-
-	DataManager Managerobject;
-	Managerobject.datasave();
-	Managerobject.candlestick(cout);
-	Managerobject.bargraph(cout);
-	Managerobject.sma(cout);
-	Managerobject.ma(cout);
-	Managerobject.savetofile(cout);
-	Managerobject.outputfile();
-
-
-	while (true) {
-		DataManager Managerobject;
-		Managerobject.datasave();
-		Managerobject.candlestick(cout);
-		Managerobject.bargraph(cout);
-		Managerobject.sma(cout);
-		Managerobject.ma(cout);
-		Managerobject.savetofile(cout);
-		Managerobject.outputfile();
-
-	}
-
-	
-}
-void FinanceDirector::error(){
-	cout << "Please retype the name of the input file" << endl;
-	
 }
 
 	

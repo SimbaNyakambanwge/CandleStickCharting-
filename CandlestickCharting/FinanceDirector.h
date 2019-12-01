@@ -12,11 +12,14 @@ class FinanceDirector
 private:
 	string director;
 	int user;
+	string choice;
 public:
 	FinanceDirector();
-	void finance();
+	
 	void error();
 	void output();
+	void userinteraction();
+	
 	
 
 };

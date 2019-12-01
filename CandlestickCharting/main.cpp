@@ -10,13 +10,11 @@
 #include <stdlib.h>
 
 using namespace std;
-
-
-
 int  main()
 
 {  
 	FinanceDirector object;
+	object.userinteraction();
 	object.output();
 }
 

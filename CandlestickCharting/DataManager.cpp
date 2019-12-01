@@ -108,7 +108,7 @@ void DataManager::datasave() {
 
 
 }
-void DataManager::calculationsxaxis(ostream& os) {
+void DataManager::xaxiscalculation(ostream& os) {
 	reverse(days.begin(), days.end());
 	const int DAYS_INC = 3;
 	os << endl;
@@ -136,7 +136,7 @@ void DataManager::bargraph(ostream& os) {
 	difference = highest - lowest;
 	increment = (difference / DIVISIONS) ;
 	
-	os << "Bargraph" << endl;
+	
 	os << endl;
 	for (int i = 0; i < DIVISIONS; i++) {
 		highest = (highest - increment);
@@ -158,7 +158,7 @@ void DataManager::bargraph(ostream& os) {
 		}
 		os << endl;
 	}
-	calculationsxaxis(os);
+	xaxiscalculation(os);
 }
 void DataManager::reversedata(ostream&os) {
 	
@@ -213,7 +213,7 @@ void DataManager::sma(ostream& os) {
 		
 		
 	}
-	calculationsxaxis(os);
+	xaxiscalculation(os);
 }
 
 void DataManager::candlestick(ostream& os) {
@@ -259,7 +259,7 @@ for (int rows = 0; rows < 30; rows++) { // looping through rows
  }
 		os << endl;
 }
-calculationsxaxis(os);
+xaxiscalculation(os);
 }
 
 void DataManager::savetofile(ostream& os)
@@ -283,7 +283,6 @@ void DataManager::outputfile() {
 		sma(outputFile);
 		bargraph(outputFile);
 		ma(outputFile);
-		calculationsxaxis(outputFile);
 		outputFile.close();
 		cout << "saving has been done" << endl;
 		loopback();
@@ -355,7 +354,7 @@ void DataManager::ma(ostream& os) {
 
 
 	}
-	calculationsxaxis(os);
+	xaxiscalculation(os);
 }
 bool DataManager::loopback() {
 	string userinput;

@@ -20,10 +20,11 @@ private:
 	vector<double>market_Cap;
 	vector<double> days;
 	const int DIVIDER = 1000000000;
+	int filenumber;
 public:
 	
 	void datasave();
-	void calculationsxaxis(ostream& os);
+	void xaxiscalculation(ostream& os);
 	void bargraph(ostream& os);
 	void reversedata(ostream& os);
 	void sma(ostream& os);
