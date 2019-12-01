@@ -12,145 +12,120 @@ using namespace std;
 
 
 void DataManager::datasave() {
-
-	string filename;
+    string filename;
 	director = filename;
 	cin >> filename;
 	ifstream File;
 	File.open(filename);
 
 	ifstream inputFileStream;
-	inputFileStream.open(filename); // hardcoded filename, for now...
-
-	
-
-	
+	inputFileStream.open(filename);
 
 	if (inputFileStream.good())
 	{
-		
-		cout << "Input file is processing below:" << endl << endl;
-
+		cout << "Input file is being analysed" << endl << endl;
 		string line;
-		getline(inputFileStream, line); // read 1st line, skip 1st line (headers), might fail!
-		getline(inputFileStream, line); // read 2nd line, might fail!
-
-
-		while (!inputFileStream.fail()) // check for failbit
+		getline(inputFileStream, line); 
+		getline(inputFileStream, line); 
+        while (!inputFileStream.fail()) 
 		{
 			stringstream ss(line);
 
 			string date1;
 			string date2;
-			getline(ss, date1, ','); // read first field from line, might fail
-			getline(ss, date2, ','); // read second field from line, might fail
+			getline(ss, date1, ','); 
+			getline(ss, date2, ','); 
 			string date = date1 + date2;
 			string trimmedDate = date.substr(1, date.size() - 2);
-			stringstream iss(date1);
+			stringstream digits(date1);
 			string month;
 			int day;
-			getline(iss, month, ' ');
-			iss >> day;
+			getline(digits, month, ' ');
+			digits >> day;
 			days.push_back(day);
+            cout << fixed; 
 
-
-
-
-			
-
-			cout << fixed;
-			int columns = 6;
-			for (int i = 0; i < columns; i++) { // loops through the remaining 6 columns
+			for (int i = 0; i < COLUMNS; i++) { // loops through the remaining 6 columns
 				string field;
 				double fieldData;
-				getline(ss, field, ','); // read next field, might fail
+				getline(ss, field, ','); 
 				stringstream fss(field);
-				fss >> fieldData; // try to convert to a double, this might fail !!!
+				fss >> fieldData; 
 
-				if (i == 0)
+				if (i == 0) {
 					open.push_back(fieldData);
-				if (i == 1)
+				}
+				if (i == 1) {
 					high.push_back(fieldData);
-				if (i == 2)
+				}
+				if (i == 2) {
 					low.push_back(fieldData);
-				if (i == 3)
+				}
+				if (i == 3) {
 					close.push_back(fieldData);
-				if (i == 4)
+				}
+				if (i == 4) {
 					volume.push_back(fieldData);
-				if (i == 5)
+				}
+				if (i == 5) {
 					market_Cap.push_back(fieldData);
+				}
 				
-
 			}
-			
 			getline(inputFileStream, line); // read next line
 			
 		}
-		
 		cout << endl;
 		
-		
-		
-
 	}
-
 	
 	else
 	{
 	FinanceDirector object;
 	object.error();
-		
 	}
-
-
-
-	inputFileStream.close();
-
+     inputFileStream.close();
 
 }
+
 void DataManager::xaxiscalculation(ostream& os) {
 	reverse(days.begin(), days.end());
-	const int DAYS_INC = 3;
 	os << endl;
 	os << setw(7);
 	os << "   ";
 	for (int x = 0; x < days.size(); x += DAYS_INC)
 	{
-		os.fill('0');
+		os.fill('0'); //compensate for any single digit dates
 		os << setw(2) <<setprecision(0)<< days[x] << " ";
 
 	}
 	os << endl;
 	os << endl;
-
 }
 void DataManager::bargraph(ostream& os) {
 	reverse(volume.begin(), volume.end());
 	reverse(days.begin(), days.end());
-	long long increment;
+	long long decrement;
 	long long difference;
 	long long Yaxis;
-	const int DIVISIONS = 30;
 	long long highest = *max_element(volume.begin(), volume.end());
 	long long lowest = *min_element(volume.begin(), volume.end());
 	difference = highest - lowest;
-	increment = (difference / DIVISIONS) ;
-	
-	
+	decrement = (difference / DIVISIONS) ;
 	os << endl;
 	for (int i = 0; i < DIVISIONS; i++) {
-		highest = (highest - increment);
+		highest = (highest - decrement);
 		
 		Yaxis = highest / DIVIDER;
 		
-		os << setw(3) << setprecision(0)<< Yaxis << "Bil " << char(180);
+		os << setw(3) << setprecision(0)<< Yaxis << "Bil " <<yaxisbar;
 		
 		for (int j = 0; j < days.size(); j++) {
 			if (volume[j] >= highest && open[j] < close[j]) {
-				os << char(219);
+				os << positivebar;
 			}
 			else if (volume[j] >= highest && open[j] > close[j]) {
-				os << char(176);
+				os << negativebar;
 			}
 			else
 				os << " ";
@@ -160,15 +135,7 @@ void DataManager::bargraph(ostream& os) {
 	}
 	xaxiscalculation(os);
 }
-void DataManager::reversedata(ostream&os) {
-	
-	
-	
-	
-	
-	reverse(market_Cap.begin(), market_Cap.end());
-	
-}
+
 void DataManager::sma(ostream& os) {
 	
 	reverse(high.begin(), high.end());
@@ -178,25 +145,24 @@ void DataManager::sma(ostream& os) {
 	double maximum = *max_element(high.begin(), high.end());
     double minimum = *min_element(low.begin(), low.end());
 	double Difference;
-    double increment;
+    double decrement;
     Difference = maximum - minimum;
-	increment = Difference / 30;
-	const double HALF_INC = increment / 2;
+	decrement = Difference / DIVISIONS;
+	const double HALF_INC = decrement / 2;
 	double sma= 0.0;
 	
-	for (int rows = 0; rows < 30; rows++) { // looping through rows
-		maximum = maximum - increment;
-		os << setw(5) << setprecision(0)<< maximum << " " << char(180);
+	for (int rows = 0; rows < DIVISIONS; rows++) { // looping through rows
+		maximum = maximum - decrement;
+		os << setw(5) << setprecision(0)<< maximum << " " << yaxisbar;
 
 		for (int j = 0; j < days.size(); j++) { // loop through col
 
-			if (j > 9) {
+			if (j > PERIOD_9) {
 
-				for (int x = 0; x < 9; x++) {
-					sma = close[j -x] + sma;
+				for (int x = 0; x <PERIOD_9; x++) {
+					sma = close[j-x] + sma;
 				}
-				
-				sma = sma / 9;
+				sma = sma /PERIOD_9;
 				
 			}
 				if (maximum + HALF_INC > sma && sma > maximum - HALF_INC) {
@@ -222,33 +188,33 @@ void DataManager::candlestick(ostream& os) {
 	reverse(low.begin(), low.end());
 	reverse(close.begin(), close.end());
 
-double maximum = *max_element(high.begin(), high.end());
-double minimum = *min_element(low.begin(), low.end());
-double difference;
-double increment;
-difference = maximum - minimum;
-increment = difference / 30;
-const double HALF_INC = increment / 2;
-for (int rows = 0; rows < 30; rows++) { // looping through rows
-		maximum = maximum - increment;
-		os << setw(5) <<setprecision(0)<< maximum << " " << char(180);
+    double maximum = *max_element(high.begin(), high.end());
+    double minimum = *min_element(low.begin(), low.end());
+    double difference;
+    double decrement;
+    difference = maximum - minimum;
+    decrement = difference / DIVISIONS;
+    const double HALF_INC = decrement / 2;
+    for (int rows = 0; rows < DIVISIONS; rows++) { // looping through rows
+		maximum = maximum - decrement;
+		os << setw(5) <<setprecision(0)<< maximum << " " << yaxisbar;
 
- for (int j = 0; j < days.size(); j++) { // loop through col
+      for (int j = 0; j < days.size(); j++) { // loop through col
 
 		    if (close[j] >= maximum - HALF_INC && maximum + HALF_INC >= open[j])
 			{
-				os << char(219);
+				os << positivebar;
 
 			}
 			else if (open[j] >= maximum - HALF_INC && maximum + HALF_INC >= close[j])
 			{
-				os << char(176);
+				os << negativebar;
 			}
 			else if (maximum - HALF_INC <= high[j] && maximum + HALF_INC >= low[j]) {
-				os << char(179);
+				os << wick;
 			}
 			else if (maximum + HALF_INC >= high[j] && maximum - HALF_INC <= low[j]) {
-				os << char(179);
+				os << wick;
 			}
 			else
 			{
@@ -303,38 +269,37 @@ void DataManager::ma(ostream& os) {
 	double maximum = *max_element(high.begin(), high.end());
 	double minimum = *min_element(low.begin(), low.end());
 	double Difference;
-	double increment;
+	double decrement;
 	Difference = maximum - minimum;
-	increment = Difference / 30;
-	const double HALF_INC = 50;
+	decrement = Difference / DIVISIONS;
 	double ma1 = 0.0;
 	double ma2 = 0.0;
 
-	for (int rows = 0; rows < 30; rows++) { // looping through rows
-		maximum = maximum - increment;
-		os << setw(5) << setprecision(0) << maximum << " " << char(180);
+	for (int rows = 0; rows < DIVISIONS; rows++) { // looping through rows
+		maximum = maximum - decrement;
+		os << setw(5) << setprecision(0) << maximum << " " << yaxisbar;
 
 		for (int j = 0; j < days.size(); j++) { // loop through col
 
-			if (j > 9) {
+			if (j > PERIOD_9) {
 
-				for (int x = 0; x < 9; x++) {
+				for (int x = 0; x < PERIOD_9; x++) {
 					ma1 = close[j - x] + ma1;
 				}
 
-				ma1 = ma1 / 9;
+				ma1 = ma1 / PERIOD_9;
 
 			}
 			if (maximum + HALF_INC > ma1 && ma1 > maximum - HALF_INC) {
 
-				os << char(167);
+				os << macharacter;
 			}
 
-			else if (j > 5) {
-				for (int x = 0; x < 5; x++) {
+			else if (j > PERIOD_5) {
+				for (int x = 0; x < PERIOD_5; x++) {
 					ma2 = close[j - x] + ma2;
 				}
-				ma2 = ma2 / 5;
+				ma2 = ma2 /PERIOD_5;
 			}
 			if(maximum +HALF_INC > ma2 && ma2 > maximum - HALF_INC){
 				os << ".";
@@ -342,7 +307,7 @@ void DataManager::ma(ostream& os) {
 			}
 			else if((maximum + HALF_INC > ma1 && ma1 > maximum - HALF_INC) || (maximum + HALF_INC > ma2 && ma2 > maximum - HALF_INC)) 
 			{
-				os << char(167);
+				os << macharacter;
 			}
 			else
 			{
@@ -368,4 +333,5 @@ bool DataManager::loopback() {
 		return false;
 	}
 }
+
 

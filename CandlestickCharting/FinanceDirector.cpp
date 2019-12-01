@@ -14,25 +14,25 @@ FinanceDirector::FinanceDirector(){}
 
 
 void FinanceDirector::output() {
-	
-	
-		DataManager Managerobject;
-		Managerobject.datasave();
-		cout << "CandleStick Chart" << endl;
-		cout << endl;
-		Managerobject.candlestick(cout);
-		cout << "Bar Graph" << endl;
-		cout << endl;
-		Managerobject.bargraph(cout);
-		cout << "Simple Moving Average" << endl;
-		cout << endl;
-		Managerobject.sma(cout);
-		cout << "Moving Average" << endl;
-		cout << endl;
-		Managerobject.ma(cout);
-		Managerobject.savetofile(cout);
-		Managerobject.outputfile();
-	
+	DataManager Managerobject;
+	Managerobject.datasave();
+	cout << "CandleStick Chart" << endl;
+	cout << endl;
+	Managerobject.candlestick(cout);
+	cout << "Bar Graph" << endl;
+	cout << endl;
+	Managerobject.bargraph(cout);
+	cout << "Simple Moving Average" << endl;
+	cout << endl;
+	Managerobject.sma(cout);
+	cout << "Moving Average" << endl;
+	cout << endl;
+	Managerobject.ma(cout);
+	Managerobject.savetofile(cout);
+	Managerobject.outputfile();
+		
+
+
 
 
 	while (true) {
@@ -55,7 +55,8 @@ void FinanceDirector::output() {
 
 	}
 
-	
+
+		
 }
 void FinanceDirector::error(){
 	cout << "Please retype the name of the input file" << endl;

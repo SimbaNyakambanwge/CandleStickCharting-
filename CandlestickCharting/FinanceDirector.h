@@ -12,7 +12,7 @@ class FinanceDirector
 private:
 	string director;
 	int user;
-	string choice;
+	
 public:
 	FinanceDirector();
 	
