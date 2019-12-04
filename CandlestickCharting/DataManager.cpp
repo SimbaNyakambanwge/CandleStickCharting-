@@ -7,7 +7,6 @@
 #include <algorithm>
 #include "DataManager.h"
 #include "FinanceDirector.h"
-
 using namespace std;
 
 
@@ -46,7 +45,7 @@ void DataManager::datasave() {
 			days.push_back(day);
             cout << fixed; 
 
-			for (int i = 0; i < COLUMNS; i++) { // loops through the remaining 6 columns
+			for (int i = 0; i < COLUMNS; i++) { // loops through the remaining 6 columns and pushing back the data into the defined vectors
 				string field;
 				double fieldData;
 				getline(ss, field, ','); 
@@ -90,18 +89,30 @@ void DataManager::datasave() {
 }
 
 void DataManager::xaxiscalculation(ostream& os) {
-	reverse(days.begin(), days.end());
-	os << endl;
-	os << setw(7);
-	os << "   ";
-	for (int x = 0; x < days.size(); x += DAYS_INC)
-	{
-		os.fill('0'); //compensate for any single digit dates
-		os << setw(2) <<setprecision(0)<< days[x] << " ";
+	if (days.size() <= SCALED_XAXIS) {
+		reverse(days.begin(), days.end());
+		os << endl;
+		os << setw(7);
+		os << "   ";
+		for (int x = 0; x < days.size(); x += DAYS_INC)
+		{
+			os.fill('0'); //compensate for any single digit dates
+			os << setw(2) << setprecision(0) << days[x] << " ";
 
+		}
+		os << endl;
+		os << endl;
 	}
-	os << endl;
-	os << endl;
+	else if (days.size() >= SCALED_XAXIS) { //statement to deal with file 4 size
+		reverse(days.begin(), days.end());
+		os << endl;
+		os << setw(7);
+		os << "   ";
+		for (int x = 0; x < days.size(); x += LARGE_DAYS_INC) {
+			os.fill('0');
+			os <<setw(2) << setprecision(0) << days[x] << " ";
+		}
+	}
 } // caclulates x axis for all the graphs to be outputted
 void DataManager::plotbargraph(ostream& os) {
 	reverse(volume.begin(), volume.end());
@@ -163,7 +174,7 @@ void DataManager::plotsma(ostream& os) {
 				for (int x = 0; x <PERIOD_9; x++) {
 					sma = close[j-x] + sma;
 				}
-				sma = sma /PERIOD_9;
+				sma = sma / PERIOD_9;
 				
 			}
 				if (maximum + HALF_INC > sma && sma > maximum - HALF_INC) {
@@ -184,10 +195,8 @@ void DataManager::plotsma(ostream& os) {
 }
 
 void DataManager::plotcandlestick(ostream& os) {
-	reverse(open.begin(), open.end());
-	reverse(high.begin(), high.end());
-	reverse(low.begin(), low.end());
-	reverse(close.begin(), close.end());
+	reversecandledata();
+	
 	
 		double maximum = *max_element(high.begin(), high.end());
 		double minimum = *min_element(low.begin(), low.end());
@@ -334,5 +343,10 @@ bool DataManager::loopback() {
 		return false;
 	}
 }// enables user to be able to rerun the program with a different file
-
+void DataManager::reversecandledata() {
+	reverse(high.begin(), high.end());
+	reverse(low.begin(), low.end());
+	reverse(close.begin(), close.end());
+	reverse(open.begin(), open.end());
+}
 

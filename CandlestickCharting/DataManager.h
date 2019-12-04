@@ -22,6 +22,7 @@ private:
 	const int DIVIDER = 1000000000;
 	const int COLUMNS = 6;
 	const int DAYS_INC = 3;
+	const int LARGE_DAYS_INC = 10;
 	const int DIVISIONS = 30;
 	const int PERIOD_9 = 9;
 	const int PERIOD_5 = 5;
@@ -33,6 +34,7 @@ private:
 	char macharacter = char(167);
 	double ma1 = 0.0;
 	double ma2 = 0.0;
+	const int SCALED_XAXIS = 100;
 		
 public:
 	
@@ -45,4 +47,5 @@ public:
 	void outputtoconsole(ostream& os);// using os to output either to text file or console
 	void outputfile();
 	bool loopback();
+	void reversecandledata();
 };
