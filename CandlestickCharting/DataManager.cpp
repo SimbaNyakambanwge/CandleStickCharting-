@@ -122,10 +122,10 @@ void DataManager::plotbargraph(ostream& os) {
 		os << setw(3) << setprecision(0)<< Yaxis << "Bil " <<yaxisbar;
 		
 		for (int j = 0; j < days.size(); j++) {
-			if (volume[j] >= highest && open[j] < close[j]) {
+			if (volume[j] >= highest - HALF_INC && open[j] < close[j]) {
 				os << positivebar;
 			}
-			else if (volume[j] >= highest && open[j] > close[j]) {
+			else if (volume[j] >= highest + HALF_INC && open[j] > close[j]) {
 				os << negativebar;
 			}
 			else
