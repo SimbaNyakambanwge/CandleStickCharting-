@@ -28,7 +28,7 @@ void FinanceDirector::output() {
 	cout << "Moving Average" << endl;
 	cout << endl;
 	Managerobject.plotma(cout);
-	Managerobject.savetofile(cout);
+	Managerobject.outputtoconsole(cout);
 	Managerobject.outputfile();
 		
 
