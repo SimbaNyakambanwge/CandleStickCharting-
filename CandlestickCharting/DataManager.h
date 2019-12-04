@@ -31,16 +31,18 @@ private:
 	char wick = char(179);
 	const double HALF_INC = 50;
 	char macharacter = char(167);
-	
+	double ma1 = 0.0;
+	double ma2 = 0.0;
+		
 public:
 	
 	void datasave();
 	void xaxiscalculation(ostream& os);
-	void bargraph(ostream& os);
-	void sma(ostream& os);
-	void ma(ostream& os);
-	void candlestick(ostream& os);
-	void savetofile(ostream& os);
+	void plotbargraph(ostream& os);
+	void plotsma(ostream& os);
+	void plotma(ostream& os);
+	void plotcandlestick(ostream& os);
+	void outputtoconsole(ostream& os);// using os to output either to text file or console
 	void outputfile();
 	bool loopback();
 };

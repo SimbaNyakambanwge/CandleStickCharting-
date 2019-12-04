@@ -12,6 +12,7 @@ using namespace std;
 
 
 void DataManager::datasave() {
+	
     string filename;
 	director = filename;
 	cin >> filename;
@@ -101,8 +102,8 @@ void DataManager::xaxiscalculation(ostream& os) {
 	}
 	os << endl;
 	os << endl;
-}
-void DataManager::bargraph(ostream& os) {
+} // caclulates x axis for all the graphs to be outputted
+void DataManager::plotbargraph(ostream& os) {
 	reverse(volume.begin(), volume.end());
 	reverse(days.begin(), days.end());
 	long long decrement;
@@ -136,7 +137,7 @@ void DataManager::bargraph(ostream& os) {
 	xaxiscalculation(os);
 }
 
-void DataManager::sma(ostream& os) {
+void DataManager::plotsma(ostream& os) {
 	
 	reverse(high.begin(), high.end());
 	reverse(low.begin(), low.end());
@@ -182,58 +183,59 @@ void DataManager::sma(ostream& os) {
 	xaxiscalculation(os);
 }
 
-void DataManager::candlestick(ostream& os) {
+void DataManager::plotcandlestick(ostream& os) {
 	reverse(open.begin(), open.end());
 	reverse(high.begin(), high.end());
 	reverse(low.begin(), low.end());
 	reverse(close.begin(), close.end());
+	
+		double maximum = *max_element(high.begin(), high.end());
+		double minimum = *min_element(low.begin(), low.end());
+		double difference;
+		double decrement;
+		difference = maximum - minimum;
+		decrement = difference / DIVISIONS;
+		const double HALF_INC = decrement / 2;
+		for (int rows = 0; rows < DIVISIONS; rows++) { // looping through rows
+			maximum = maximum - decrement;
+			os << setw(5) << setprecision(0) << maximum << " " << yaxisbar;
 
-    double maximum = *max_element(high.begin(), high.end());
-    double minimum = *min_element(low.begin(), low.end());
-    double difference;
-    double decrement;
-    difference = maximum - minimum;
-    decrement = difference / DIVISIONS;
-    const double HALF_INC = decrement / 2;
-    for (int rows = 0; rows < DIVISIONS; rows++) { // looping through rows
-		maximum = maximum - decrement;
-		os << setw(5) <<setprecision(0)<< maximum << " " << yaxisbar;
+			for (int j = 0; j < days.size(); j++) { // loop to output candlesticks
 
-      for (int j = 0; j < days.size(); j++) { // loop through col
+				if (close[j] >= maximum - HALF_INC && maximum + HALF_INC >= open[j])
+				{
+					os << positivebar;
 
-		    if (close[j] >= maximum - HALF_INC && maximum + HALF_INC >= open[j])
-			{
-				os << positivebar;
+				}
+				else if (open[j] >= maximum - HALF_INC && maximum + HALF_INC >= close[j])
+				{
+					os << negativebar;
+				}
+				else if (maximum - HALF_INC <= high[j] && maximum + HALF_INC >= low[j]) {
+					os << wick;
+				}
+				else if (maximum + HALF_INC >= high[j] && maximum - HALF_INC <= low[j]) {
+					os << wick;
+				}
+				else
+				{
+					os << " ";
+				}
+
 
 			}
-			else if (open[j] >= maximum - HALF_INC && maximum + HALF_INC >= close[j])
-			{
-				os << negativebar;
-			}
-			else if (maximum - HALF_INC <= high[j] && maximum + HALF_INC >= low[j]) {
-				os << wick;
-			}
-			else if (maximum + HALF_INC >= high[j] && maximum - HALF_INC <= low[j]) {
-				os << wick;
-			}
-			else
-			{
-				os << " ";
-			}
-
-
- }
-		os << endl;
+			os << endl;
+		}
+		xaxiscalculation(os);
+	
 }
-xaxiscalculation(os);
-}
 
-void DataManager::savetofile(ostream& os)
+void DataManager::outputtoconsole(ostream& os)
 {
-
+// function used to create an object to output into a text file
 }
 void DataManager::outputfile() {
-	savetofile(cout);
+	outputtoconsole(cout);
 	char save;
 	string filename;
 
@@ -245,10 +247,10 @@ void DataManager::outputfile() {
 		cin >> filename;
 		ofstream outputFile;
 		outputFile.open(filename);
-		candlestick(outputFile);
-		sma(outputFile);
-		bargraph(outputFile);
-		ma(outputFile);
+		plotcandlestick(outputFile);
+		plotsma(outputFile);
+		plotbargraph(outputFile);
+		plotma(outputFile);
 		outputFile.close();
 		cout << "saving has been done" << endl;
 		loopback();
@@ -261,7 +263,7 @@ void DataManager::outputfile() {
 	
 	
 }
-void DataManager::ma(ostream& os) {
+void DataManager::plotma(ostream& os) {
 	reverse(high.begin(), high.end());
 	reverse(low.begin(), low.end());
 	reverse(days.begin(), days.end());
@@ -272,8 +274,7 @@ void DataManager::ma(ostream& os) {
 	double decrement;
 	Difference = maximum - minimum;
 	decrement = Difference / DIVISIONS;
-	double ma1 = 0.0;
-	double ma2 = 0.0;
+	
 
 	for (int rows = 0; rows < DIVISIONS; rows++) { // looping through rows
 		maximum = maximum - decrement;
@@ -332,6 +333,6 @@ bool DataManager::loopback() {
 	else if (userinput == "n" || userinput == "no" || userinput == "NO"|| userinput== "N") {
 		return false;
 	}
-}
+}// enables user to be able to rerun the program with a different file
 
 

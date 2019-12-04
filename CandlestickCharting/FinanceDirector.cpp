@@ -18,16 +18,16 @@ void FinanceDirector::output() {
 	Managerobject.datasave();
 	cout << "CandleStick Chart" << endl;
 	cout << endl;
-	Managerobject.candlestick(cout);
+	Managerobject.plotcandlestick(cout);
 	cout << "Bar Graph" << endl;
 	cout << endl;
-	Managerobject.bargraph(cout);
+	Managerobject.plotbargraph(cout);
 	cout << "Simple Moving Average" << endl;
 	cout << endl;
-	Managerobject.sma(cout);
+	Managerobject.plotsma(cout);
 	cout << "Moving Average" << endl;
 	cout << endl;
-	Managerobject.ma(cout);
+	Managerobject.plotma(cout);
 	Managerobject.savetofile(cout);
 	Managerobject.outputfile();
 		
@@ -40,17 +40,17 @@ void FinanceDirector::output() {
 		Managerobject.datasave();
 		cout << "CandleStick Chart" << endl;
 		cout << endl;
-		Managerobject.candlestick(cout);
+		Managerobject.plotcandlestick(cout);
 		cout << "Bar Graph" << endl;
 		cout << endl;
-		Managerobject.bargraph(cout);
+		Managerobject.plotbargraph(cout);
 		cout << "Simple Moving Average" << endl;
 		cout << endl;
-		Managerobject.sma(cout);
+		Managerobject.plotsma(cout);
 		cout << "Moving Average" << endl;
 		cout << endl;
-		Managerobject.ma(cout);
-		Managerobject.savetofile(cout);
+		Managerobject.plotma(cout);
+		Managerobject.outputtoconsole(cout);
 		Managerobject.outputfile();
 
 	}
