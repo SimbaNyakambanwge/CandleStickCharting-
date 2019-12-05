@@ -292,11 +292,11 @@ void DataManager::plotma(ostream& os) {
 		maximum = maximum - decrement;
 		os << setw(5) << setprecision(0) << maximum << " " << yaxisbar;
 
-		for (int j = 0; j < days.size(); j++) { // loop through col
+		for (double j = 0; j < days.size(); j++) { // loop through col
 
 			if (j > PERIOD_9) {
 
-				for (int x = 0; x < PERIOD_9; x++) {
+				for (double x = 0; x < PERIOD_9; x++) {
 					ma1 = close[j - x] + ma1;
 				}
 
@@ -309,7 +309,7 @@ void DataManager::plotma(ostream& os) {
 			}
 
 			else if (j > PERIOD_5) {
-				for (int x = 0; x < PERIOD_5; x++) {
+				for (double x = 0; x < PERIOD_5; x++) {
 					ma2 = close[j - x] + ma2;
 				}
 				ma2 = ma2 /PERIOD_5;

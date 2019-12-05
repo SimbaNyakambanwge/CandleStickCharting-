@@ -16,6 +16,7 @@ private:
 public:
 	FinanceDirector();
 	
+	
 	void error();
 	void output();
 	void userinteraction();
