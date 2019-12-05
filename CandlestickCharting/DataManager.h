@@ -38,15 +38,15 @@ private:
 		
 public:
 	
-	void datasave();
-	void xaxiscalculation(ostream& os);
-	void plotbargraph(ostream& os);
+	void datasave();// this function saves data into my six vectors
+	void xaxiscalculation(ostream& os); // a generic code used to output my X axis for all my graphs
+	void plotbargraph(ostream& os); // my bargraph plotting function
 	void plotsma(ostream& os);
 	void plotma(ostream& os);
 	void plotcandlestick(ostream& os);
 	void outputtoconsole(ostream& os);// using os to output either to text file or console
 	void outputfile();
-	bool loopback();
+	bool loopback(); // function that allows user to rerun program for another file
 	void reversecandledata();
 	
 	

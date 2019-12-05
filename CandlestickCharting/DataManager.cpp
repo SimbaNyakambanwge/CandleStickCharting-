@@ -342,8 +342,9 @@ bool DataManager::loopback() {
 		cout << "Please enter the file you would like to open"<< endl;
 		return true;
 	}
-	else if (userinput == "n" || userinput == "no" || userinput == "NO"|| userinput== "N") {
-		return false;
+	else 
+	{
+		system("exit");
 	}
 }// enables user to be able to rerun the program with a different file
 void DataManager::reversecandledata() {
