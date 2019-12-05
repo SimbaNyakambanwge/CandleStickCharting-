@@ -344,7 +344,7 @@ bool DataManager::loopback() {
 	}
 	else 
 	{
-		system("exit");
+		return false;
 	}
 }// enables user to be able to rerun the program with a different file
 void DataManager::reversecandledata() {

@@ -55,6 +55,9 @@ void FinanceDirector::output() {
 		Managerobject.outputfile();
 
 	}
+	while (false) {
+		system("exit");
+	}
 
 
 		
