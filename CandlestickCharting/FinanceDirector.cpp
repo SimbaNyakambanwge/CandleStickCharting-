@@ -30,6 +30,7 @@ void FinanceDirector::output() {
 	Managerobject.plotma(cout);
 	Managerobject.outputtoconsole(cout);
 	Managerobject.outputfile();
+	
 		
 
 

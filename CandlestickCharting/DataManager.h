@@ -48,4 +48,6 @@ public:
 	void outputfile();
 	bool loopback();
 	void reversecandledata();
+	
+	
 };

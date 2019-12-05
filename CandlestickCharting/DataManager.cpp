@@ -89,6 +89,7 @@ void DataManager::datasave() {
 }
 
 void DataManager::xaxiscalculation(ostream& os) {
+	
 	if (days.size() <= SCALED_XAXIS) {
 		reverse(days.begin(), days.end());
 		os << endl;
@@ -196,8 +197,8 @@ void DataManager::plotsma(ostream& os) {
 
 void DataManager::plotcandlestick(ostream& os) {
 	reversecandledata();
-	
-	
+	if (days.size() < 100) {
+
 		double maximum = *max_element(high.begin(), high.end());
 		double minimum = *min_element(low.begin(), low.end());
 		double difference;
@@ -236,7 +237,9 @@ void DataManager::plotcandlestick(ostream& os) {
 			os << endl;
 		}
 		xaxiscalculation(os);
-	
+	}
+	else
+		cout << " This file contains too many days for this programs capacity." << endl;
 }
 
 void DataManager::outputtoconsole(ostream& os)
