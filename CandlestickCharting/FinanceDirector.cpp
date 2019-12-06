@@ -16,16 +16,16 @@ FinanceDirector::FinanceDirector(){}
 void FinanceDirector::output() {
 	DataManager Managerobject;
 	Managerobject.datasave();
-	cout << "CandleStick Chart" << endl;
+	cout << "  "<< "-CandleStick Chart-" << endl;
 	cout << endl;
 	Managerobject.plotcandlestick(cout);
-	cout << "Bar Graph" << endl;
+	cout << "  " <<"-Bar Graph-" << endl;
 	cout << endl;
 	Managerobject.plotbargraph(cout);
-	cout << "Simple Moving Average" << "Period-9" << endl;
+	cout << "  " <<"-Simple Moving Average-" <<"  "<< "-Period-9-" << endl;
 	cout << endl;
 	Managerobject.plotsma(cout);
-	cout << "Moving Average"<< "Period 9 and Period 5"<<" " << endl;
+	cout << "  " <<"Moving Average"<< "-Period 9 and Period 5-"<<" " << endl;
 	cout << endl;
 	Managerobject.plotma(cout);
 	Managerobject.outputtoconsole(cout);
