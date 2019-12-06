@@ -63,9 +63,12 @@ void FinanceDirector::output() {
 		
 }
 void FinanceDirector::error(){
-	cout << "Please retype the name of the input file" << endl;
-	DataManager object;
-	object.datasave();
+
+		cout << "Please retype the name of the input file" << endl;
+		DataManager object;
+		object.datasave();
+		
+		
 }
 void FinanceDirector::userinteraction() {
 	cout << "Data Analysis" << endl;

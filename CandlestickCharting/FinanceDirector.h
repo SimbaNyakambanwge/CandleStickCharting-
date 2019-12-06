@@ -11,7 +11,7 @@ class FinanceDirector
 {
 private:
 	string director;
-	int user;
+	int user = 0;
 	
 public:
 	FinanceDirector();

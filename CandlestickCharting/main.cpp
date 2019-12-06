@@ -16,6 +16,7 @@ int  main()
 	FinanceDirector object;
 	object.userinteraction();
 	object.output();
+	system("exit");
 }
 
 
